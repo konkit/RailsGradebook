@@ -11,7 +11,32 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150806093841) do
+ActiveRecord::Schema.define(version: 20150806105900) do
+
+  create_table "divisions", force: :cascade do |t|
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "divisions_subjects", id: false, force: :cascade do |t|
+    t.integer "division_id", null: false
+    t.integer "subject_id",  null: false
+  end
+
+  create_table "grades", force: :cascade do |t|
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.integer  "user_id"
+    t.integer  "subject_id"
+  end
+
+  add_index "grades", ["subject_id"], name: "index_grades_on_subject_id"
+  add_index "grades", ["user_id"], name: "index_grades_on_user_id"
+
+  create_table "subjects", force: :cascade do |t|
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
 
   create_table "users", force: :cascade do |t|
     t.string   "email",                  default: "", null: false
@@ -26,8 +51,10 @@ ActiveRecord::Schema.define(version: 20150806093841) do
     t.string   "last_sign_in_ip"
     t.datetime "created_at",                          null: false
     t.datetime "updated_at",                          null: false
+    t.integer  "division_id"
   end
 
+  add_index "users", ["division_id"], name: "index_users_on_division_id"
   add_index "users", ["email"], name: "index_users_on_email", unique: true
   add_index "users", ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
 
