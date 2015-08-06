@@ -43,27 +43,21 @@ class Ability
 
   def init_teacher_abilities(user)
     # Teacher can manage the Grades of the subjects he is involved
-    can :manage, Grade do |grade|
-      user in grade.subject.teacher
-    end
+    can :manage, Grade, :subject => { :teacher => user }
 
-    can :see_his_subjects, Subject do |subject|
-      user == subject.teacher
-    end
+    can :see_his_subjects, Subject, :teacher => user
 
     can :generate_csv, :all
   end
+  
 
   def init_student_abilities(user)
     # Student can see his own grades
-    can :read, Grade do |grade|
-      user == grade.student
-    end
+    can :read, Grade, :student => user
 
-    can :change_password, Student do |student|
-      user == student
-    end
+    can :change_password, Student, :id => user.id
   end
+
 
   def init_principal_abilities(user)
     # Principal can see everything
@@ -76,9 +70,7 @@ class Ability
     can :change_password, [Teacher, Student]
 
     # Principal can change his password
-    can :change_password, Principal do |principal|
-      user == principal
-    end
+    can :change_password, Principal, :id => user.id
 
     # Can access stats
     can :access_stats, :all
