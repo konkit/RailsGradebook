@@ -9,4 +9,12 @@
   %body
     %p.notice= notice
     %p.alert= alert
+
+    - if !current_user.nil?
+      Welcome
+      = link_to(current_user.firstname + ' ' + current_user.lastname + ', ', profile_path(current_user))
+      = link_to('Logout', destroy_user_session_path, :method => :delete, :class => " button btn" )
+    - else
+      = link_to('Sign in', new_user_session_path, :class => " button btn")
+      = link_to('Sign up', new_user_registration_path, :class => " button btn")
     = yield
