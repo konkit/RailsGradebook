@@ -36,7 +36,6 @@ gem 'haml-rails'
 gem 'erb2haml'
 
 gem 'devise'
-gem 'rolify'
 gem 'cancancan'
 
 group :development, :test do
