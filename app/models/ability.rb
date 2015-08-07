@@ -19,7 +19,7 @@ class Ability
     elsif user.is_a? Principal
       init_principal_abilities(user)
     else
-      can :read, :all
+      cannot :manage, :all
     end
 
     # The first argument to `can` is the action you are giving the user
@@ -49,7 +49,7 @@ class Ability
 
     can :generate_csv, :all
   end
-  
+
 
   def init_student_abilities(user)
     # Student can see his own grades
