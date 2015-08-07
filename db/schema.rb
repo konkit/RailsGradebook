@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150806141557) do
+ActiveRecord::Schema.define(version: 20150807134625) do
 
   create_table "divisions", force: :cascade do |t|
     t.datetime "created_at", null: false
@@ -24,10 +24,11 @@ ActiveRecord::Schema.define(version: 20150806141557) do
   end
 
   create_table "grades", force: :cascade do |t|
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
+    t.datetime "created_at",             null: false
+    t.datetime "updated_at",             null: false
     t.integer  "subject_id"
     t.integer  "student_id"
+    t.integer  "gradevalue", default: 5, null: false
   end
 
   add_index "grades", ["student_id"], name: "index_grades_on_student_id"

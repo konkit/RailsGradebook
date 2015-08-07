@@ -199,7 +199,7 @@ PLATFORMS
   ruby
 
 DEPENDENCIES
-  angular-rails-templates (= 0.1.3)
+  angular-rails-templates
   bower-rails
   byebug
   cancancan
@@ -215,7 +215,6 @@ DEPENDENCIES
   sass-rails (~> 5.0)
   sdoc (~> 0.4.0)
   spring
-  sprockets (= 3.2.0)
   sqlite3
   uglifier (>= 1.3.0)
   web-console (~> 2.0)
