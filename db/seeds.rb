@@ -24,11 +24,29 @@ principal1.password = '321321321'
 principal1.password_confirmation = '321321321'
 principal1.save!
 
-subject1 = Subject.new
+subject1 = Subject.new(name: 'Maths')
 subject1.save!
 
-subject2 = Subject.new
+subject2 = Subject.new(name: 'English')
 subject2.save!
 
-subject3 = Subject.new
+subject3 = Subject.new(name: 'Biology')
 subject3.save!
+
+grade1 = Grade.new
+grade1.gradevalue = 5
+grade1.subject = subject1
+grade1.student = student1
+grade1.save!
+
+grade1 = Grade.new
+grade1.gradevalue = 4
+grade1.subject = subject2
+grade1.student = student1
+grade1.save!
+
+grade1 = Grade.new
+grade1.gradevalue = 3
+grade1.subject = subject3
+grade1.student = student1
+grade1.save!

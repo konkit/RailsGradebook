@@ -53,7 +53,7 @@ class Ability
 
   def init_student_abilities(user)
     # Student can see his own grades
-    can :read, Grade, :student => user
+    can :view_students_grades, Student, :id => user.id
 
     can :change_password, Student, :id => user.id
   end

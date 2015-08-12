@@ -1,6 +1,18 @@
 class StudentsController < ApplicationController
-  load_and_authorize_resource
   before_action :set_student, only: [:show, :edit, :update, :destroy]
+  respond_to :json
+
+
+  def view_students_grades
+    student = Student.find(params[:id])
+    authorize! :view_students_grades, student
+    grades = student.grades
+      .group_by { |grade| grade.subject }
+      .map { |subject, grades| { subject: subject.name, grades: grades.map(&:gradevalue) }}
+    respond_with grades
+  end
+
+  #############
 
   # GET /students
   # GET /students.json

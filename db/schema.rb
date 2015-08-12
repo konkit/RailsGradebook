@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150807134625) do
+ActiveRecord::Schema.define(version: 20150812104535) do
 
   create_table "divisions", force: :cascade do |t|
     t.datetime "created_at", null: false
@@ -38,6 +38,7 @@ ActiveRecord::Schema.define(version: 20150807134625) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.integer  "teacher_id"
+    t.string   "name"
   end
 
   add_index "subjects", ["teacher_id"], name: "index_subjects_on_teacher_id"

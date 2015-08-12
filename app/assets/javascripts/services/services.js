@@ -1,3 +1,1 @@
-var services = angular.module('gradebookApp.services', [
-    'ngResource'
-]);
+var services = angular.module('gradebookApp.services', []);

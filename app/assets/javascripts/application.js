@@ -18,6 +18,8 @@
 //= require angular-rails-templates
 
 //= require controllers/controllers
+//= require services/services
+//= require services/GradesService.js
 
 //= require_tree .
 //= require_tree ../templates

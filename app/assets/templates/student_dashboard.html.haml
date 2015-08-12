@@ -1,0 +1,19 @@
+.panel.col-md-10.col-md-offset-1
+  .panel-heading
+    %h1 Student - Grades
+  .panel-body
+
+
+    %table.table
+      %thead
+        %tr
+          %th Subject
+          %th Grades
+      %tbody
+        %tr{"ng-repeat" => "grade in grades"}
+          %td
+            {{grade.subject}}
+          %td
+            .btn-group{:role => "group"}
+              %button.btn.btn-default{:type => "button", "ng-repeat" => "gradeval in grade.grades track by $index"}
+                {{gradeval}}
