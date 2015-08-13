@@ -2,6 +2,8 @@
   %h3 Create grade
 
 .modal-body
+  %alert{:close => "closeAlert($index)", "ng-repeat" => "alert in alerts", :type => "{{alert.type}}"} {{alert.msg}}
+
   .container
     .row
       %label Student:

@@ -2,20 +2,35 @@
   .panel-heading
     %h1 Teacher - Grades
   .panel-body
+    .row
+      %p Selected subject  : {{selectedSubject.name}}
+      %p Selected division : {{selectedDivision.name}}
 
+    .row
+      .col-md-4
+        %label Select subject
+        %select.form-control{"ng-options" => "item.name for item in subjects_and_divisions", "ng-model" => "selectedSubject", "ng-change" => "getGrades()"}
+      .col-md-4
+        %label select division
+        %select.form-control{"ng-options" => "item.name for item in selectedSubject.divisions", "ng-model" => "selectedDivision", "ng-change" => "getGrades()"}
+      .col-md-4
+        %p{"style" => "padding-top: 24px;" }
+          %button.btn.btn-primary{"ng-click" => "getGrades()"} Submit
+
+    %hr
 
     %table.table
       %thead
         %tr
-          %th Subject
+          %th Student
           %th Grades
       %tbody
-        %tr{"ng-repeat" => "gradeData in grades"}
+        %tr{"ng-repeat" => "gradeData in gradesData"}
           %td
-            {{gradeData.subject.name}}
+            {{gradeData.student.email}}
           %td
             .btn-group{:role => "group"}
-              .btn.btn-default{:type => "button", "ng-repeat" => "grade in gradeData.grades track by $index", "ng-click" => "openEdit(gradeData.subject, gradeData.student, grade)"}
-                {{grade.value}}
-            %button.btn.btn-primary{"ng-click" => "openCreate(gradeData.subject, gradeData.student)"}
+              .btn.btn-default{:type => "button", "ng-repeat" => "grade in gradeData.grades track by $index", "ng-click" => "openEdit(selectedSubject, gradeData.student, grade)"}
+                {{grade.gradevalue}}
+            %button.btn.btn-primary{"ng-click" => "openCreate(selectedSubject, gradeData.student)"}
               Add new

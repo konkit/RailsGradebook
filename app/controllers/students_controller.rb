@@ -2,7 +2,6 @@ class StudentsController < ApplicationController
   before_action :set_student, only: [:show, :edit, :update, :destroy]
   respond_to :json
 
-
   def view_students_grades
     student = Student.find(params[:id])
     authorize! :view_students_grades, student

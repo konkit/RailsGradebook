@@ -1,0 +1,25 @@
+.panel.col-md-10.col-md-offset-1
+  .panel-heading
+    %h1 Administration - Teachers
+  .panel-body
+    .row
+      .col-md-4
+        %p{"style" => "padding-top: 24px;" }
+          %button.btn.btn-primary{"ng-click" => "createTeacher()"} New teacher
+
+    %hr
+
+    %table.table
+      %thead
+        %tr
+          %th Teacher
+          %th
+      %tbody
+        %tr{"ng-repeat" => "teacher in teacherData"}
+          %td
+            {{teacher.email}}
+          %td
+            %button.btn.btn-primary{"ng-click" => "openEdit(teacher)"}
+              Edit
+            %button.btn.btn-danger{"ng-click" => "openDelete(teacher)"}
+              Delete

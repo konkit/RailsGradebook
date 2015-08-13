@@ -1,19 +1,18 @@
 services.factory('GradesService', ['$http', function ($http) {
-    // return $resource('manager/restaurants/', {restaurants: "@restaurants"}, {
-    //         getAllRestaurants: {
-    //             method: 'GET',
-    //             responseType: 'json',
-    //             params: {}
-    //         }
-    //     }
-    // )
-
     o = {
       grades: []
     };
 
     o.getStudentGrades = function(student_id) {
       return $http.get('/students/' + student_id + '/view_students_grades.json')
+    }
+
+    o.getGrades = function(subject, division) {
+      return $http.get('/teachers/get_grades.json?subject_id=' + subject.id + '&division_id=' + division.id )
+    }
+
+    o.getSubjectsAndDivisions = function() {
+      return $http.get('/teachers/subjects_and_divisions.json')
     }
 
     o.createGrade = function(student_id, subject_id, gradevalue ) {

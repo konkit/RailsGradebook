@@ -21,9 +21,14 @@ gradebookApp.config([
         controller: 'StudentDashboardController'
       })
       .state('teachergrades', {
-        url: '/teacher_dashboard/{id:int}',
+        url: '/teacher_dashboard/',
         templateUrl: '/assets/teacher_dashboard.html',
         controller: 'TeacherDashboardController'
+      })
+      .state('teachercrud', {
+        url: '/teacher_crud/',
+        templateUrl: '/assets/teacher_crud.html',
+        controller: 'TeacherCRUDController'
       });
   }
 ])

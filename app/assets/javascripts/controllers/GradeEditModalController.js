@@ -1,7 +1,7 @@
 gradebookApp.controller('GradeEditModalController', function ($scope, $modalInstance, subject, student, grade, GradesService) {
   $scope.student = student;
   $scope.subject = subject;
-  $scope.selectedGradeValue = grade.value;
+  $scope.selectedGradeValue = grade.gradevalue;
 
   $scope.selectGrade = function(obj) {
     $scope.selectedGradeValue = parseInt( obj.currentTarget.innerText );

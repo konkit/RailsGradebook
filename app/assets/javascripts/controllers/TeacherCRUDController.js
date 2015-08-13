@@ -1,25 +1,10 @@
-gradebookApp.controller('TeacherDashboardController', function($scope, GradesService, $modal) {
-      $scope.subjects_and_divisions = {};
-      $scope.selectedSubject = {};
-      $scope.selectedDivision = {};
+gradebookApp.controller('TeacherCRUDController', function($scope, GradesService, $modal) {
 
-      function getSubjectsAndDivisions(callback) {
-        GradesService.getSubjectsAndDivisions().success(function(data) {
-          $scope.subjects_and_divisions = data;
-          $scope.selectedSubject = data[0];
-          $scope.selectedDivision = data[0].divisions[0];
-
-          callback();
-        });
-      }
-
-      $scope.getGrades = function() {
+      $scope.getTeachers = function() {
         GradesService.getGrades($scope.selectedSubject, $scope.selectedDivision).success(function(data) {
           $scope.gradesData = data;
         });
       }
-
-      getSubjectsAndDivisions($scope.getGrades);
 
       $scope.openCreate = function(subject, student) {
         var modalInstance = $modal.open( {

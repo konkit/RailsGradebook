@@ -1,6 +1,21 @@
 class TeachersController < ApplicationController
-  load_and_authorize_resource
   before_action :set_teacher, only: [:show, :edit, :update, :destroy]
+
+  def subjects_and_divisions
+    teacher = current_user
+    render json: subjects = Subject.includes(:divisions).where( teacher: teacher ).as_json(:include => :divisions)
+  end
+
+  def get_grades
+    render json: Grade.includes( :subject, :student => :division )
+      .where( users: { division_id: params[:division_id]}, subjects: { id: params[:subject_id]} )
+      .group_by { |grade| grade.student }
+      .map { |student, grade|
+        { student: student, grades: grade }
+      }
+  end
+
+  #############
 
   # GET /teachers
   # GET /teachers.json

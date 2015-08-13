@@ -8,7 +8,14 @@ Rails.application.routes.draw do
   # You can have the root of your site routed with "root"
   root 'welcome#index'
 
-  resources :subjects, :grades, :divisions, :teachers
+  resources :subjects, :grades, :divisions
+
+  resources :teachers do
+    collection do
+      get 'subjects_and_divisions'
+      get 'get_grades'
+    end
+  end
 
   resources :students do
     member do

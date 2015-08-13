@@ -6,10 +6,13 @@
 #   cities = City.create([{ name: 'Chicago' }, { name: 'Copenhagen' }])
 #   Mayor.create(name: 'Emanuel', city: cities.first)
 
+division1 = Division.create(name: "I B")
+
 student1 = Student.new
 student1.email = 'one@student.com'
 student1.password = '321321321'
 student1.password_confirmation = '321321321'
+student1.division = division1
 student1.save!
 
 teacher1 = Teacher.new
@@ -24,14 +27,17 @@ principal1.password = '321321321'
 principal1.password_confirmation = '321321321'
 principal1.save!
 
-subject1 = Subject.new(name: 'Maths')
+subject1 = Subject.new(name: 'Maths', teacher: teacher1)
 subject1.save!
+division1.subjects << subject1
 
-subject2 = Subject.new(name: 'English')
+subject2 = Subject.new(name: 'English', teacher: teacher1)
 subject2.save!
+division1.subjects << subject2
 
-subject3 = Subject.new(name: 'Biology')
+subject3 = Subject.new(name: 'Biology', teacher: teacher1)
 subject3.save!
+division1.subjects << subject3
 
 grade1 = Grade.new
 grade1.gradevalue = 5
