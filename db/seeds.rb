@@ -9,6 +9,7 @@
 division1 = Division.create(name: "I B")
 
 student1 = Student.new
+student1.name = 'John Student'
 student1.email = 'one@student.com'
 student1.password = '321321321'
 student1.password_confirmation = '321321321'
@@ -16,12 +17,14 @@ student1.division = division1
 student1.save!
 
 teacher1 = Teacher.new
+teacher1.name = 'John Teacher'
 teacher1.email = 'one@teacher.com'
 teacher1.password = '321321321'
 teacher1.password_confirmation = '321321321'
 teacher1.save!
 
 principal1 = Principal.new
+principal1.name = 'John Principal'
 principal1.email = 'one@principal.com'
 principal1.password = '321321321'
 principal1.password_confirmation = '321321321'

@@ -27,7 +27,7 @@
       %tbody
         %tr{"ng-repeat" => "gradeData in gradesData"}
           %td
-            {{gradeData.student.email}}
+            {{gradeData.student.name}}
           %td
             .btn-group{:role => "group"}
               .btn.btn-default{:type => "button", "ng-repeat" => "grade in gradeData.grades track by $index", "ng-click" => "openEdit(selectedSubject, gradeData.student, grade)"}
