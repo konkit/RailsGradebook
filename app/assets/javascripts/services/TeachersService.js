@@ -24,6 +24,7 @@ services.factory('TeachersService', ['$http', function ($http) {
     }
 
     o.delete = function(teacher ) {
+      return $http.delete( 'teachers/' + teacher.id + '.json')
     }
 
     return o;

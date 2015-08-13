@@ -35,25 +35,23 @@ gradebookApp.controller('TeacherCRUDController', function($scope, TeachersServic
         })
 
         modalInstance.result.then(function() {
-          $scope.getGrades();
+          $scope.getTeachers();
         });
       }
 
-      $scope.openDelete = function(subject, student, grade) {
+      $scope.openDelete = function(teacher) {
         var modalInstance = $modal.open( {
           animation: true,
-          templateUrl: '/assets/grade_edit_modal.html',
-          controller: 'GradeEditModalController',
+          templateUrl: '/assets/teacher_delete_modal.html',
+          controller: 'TeacherDeleteModalController',
           size: 'md',
           resolve: {
-            subject: function() { return subject; },
-            student: function() { return student; },
-            grade: function() { return grade; }
+            teacher: function() { return teacher; }
           }
         })
 
         modalInstance.result.then(function() {
-          $scope.getGrades();
+          $scope.getTeachers();
         });
       }
 
