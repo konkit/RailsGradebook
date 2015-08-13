@@ -12,7 +12,7 @@
 
     - if !current_user.nil?
       Welcome
-      current_user.email
+      = current_user.email
       = link_to('Logout', destroy_user_session_path, :method => :delete, :class => " button btn" )
     - else
       = link_to('Sign in', new_user_session_path, :class => " button btn")

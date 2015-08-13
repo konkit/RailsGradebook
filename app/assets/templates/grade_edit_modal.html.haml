@@ -1,0 +1,28 @@
+.modal-header
+  %h3 Create grade
+
+.modal-body
+  %alert{:close => "closeAlert($index)", "ng-repeat" => "alert in alerts", :type => "{{alert.type}}"} {{alert.msg}}
+
+  .container
+    .row
+      %label Student:
+      {{student.name}}
+    .row
+      %label Subject:
+      {{subject.name}}
+
+    .row
+      %label Grade value
+      .btn-group.grades-list{"role"=>"group", "data-toggle" => "buttons-radio"}
+        .btn.btn-default{"ng-click" => "selectGrade($event)", "ng-class" => "{'btn-primary': selectedGradeValue == 1}"} 1
+        .btn.btn-default{"ng-click" => "selectGrade($event)", "ng-class" => "{'btn-primary': selectedGradeValue == 2}"} 2
+        .btn.btn-default{"ng-click" => "selectGrade($event)", "ng-class" => "{'btn-primary': selectedGradeValue == 3}"} 3
+        .btn.btn-default{"ng-click" => "selectGrade($event)", "ng-class" => "{'btn-primary': selectedGradeValue == 4}"} 4
+        .btn.btn-default{"ng-click" => "selectGrade($event)", "ng-class" => "{'btn-primary': selectedGradeValue == 5}"} 5
+        .btn.btn-default{"ng-click" => "selectGrade($event)", "ng-class" => "{'btn-primary': selectedGradeValue == 6}"} 6
+
+.modal-footer
+  %button.btn.btn-danger{:type => "button", "ng-click" => "delete($event)"} Delete grade
+  %button.btn.btn-primary{:type => "button", "ng-click" => "ok($event)"} Save
+  %button.btn.btn-warning{:type => "button", "ng-click" => "cancel()"} Cancel

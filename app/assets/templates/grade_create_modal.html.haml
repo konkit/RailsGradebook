@@ -1,0 +1,25 @@
+.modal-header
+  %h3 Create grade
+
+.modal-body
+  .container
+    .row
+      %label Student:
+      {{student.name}}
+    .row
+      %label Subject:
+      {{subject.name}}
+
+    .row
+      %label Grade value
+      .btn-group.grades-list{"role"=>"group", "data-toggle" => "buttons-radio"}
+        .btn.btn-primary{"ng-click" => "selectGrade($event)"} 1
+        .btn.btn-default{"ng-click" => "selectGrade($event)"} 2
+        .btn.btn-default{"ng-click" => "selectGrade($event)"} 3
+        .btn.btn-default{"ng-click" => "selectGrade($event)"} 4
+        .btn.btn-default{"ng-click" => "selectGrade($event)"} 5
+        .btn.btn-default{"ng-click" => "selectGrade($event)"} 6
+
+.modal-footer
+  %button.btn.btn-primary{:type => "button", "ng-click" => "ok($event)"} Save
+  %button.btn.btn-warning{:type => "button", "ng-click" => "cancel()"} Cancel

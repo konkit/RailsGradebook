@@ -1,6 +1,6 @@
 .panel.col-md-10.col-md-offset-1
   .panel-heading
-    %h1 Student - Grades
+    %h1 Teacher - Grades
   .panel-body
 
 
@@ -15,5 +15,7 @@
             {{gradeData.subject.name}}
           %td
             .btn-group{:role => "group"}
-              .btn.btn-default.disabled{:type => "button", "ng-repeat" => "grade in gradeData.grades track by $index"}
+              .btn.btn-default{:type => "button", "ng-repeat" => "grade in gradeData.grades track by $index", "ng-click" => "openEdit(gradeData.subject, gradeData.student, grade)"}
                 {{grade.value}}
+            %button.btn.btn-primary{"ng-click" => "openCreate(gradeData.subject, gradeData.student)"}
+              Add new

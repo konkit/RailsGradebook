@@ -2,7 +2,8 @@ gradebookApp = angular.module('gradebookApp', [
   'ui.router',
   'templates',
   'gradebookApp.controllers',
-  'gradebookApp.services'
+  'gradebookApp.services',
+  'ui.bootstrap'
 ])
 
 gradebookApp.config([
@@ -18,6 +19,11 @@ gradebookApp.config([
         url: '/student_dashboard',
         templateUrl: '/assets/student_dashboard.html',
         controller: 'StudentDashboardController'
+      })
+      .state('teachergrades', {
+        url: '/teacher_dashboard/{id:int}',
+        templateUrl: '/assets/teacher_dashboard.html',
+        controller: 'TeacherDashboardController'
       });
   }
 ])

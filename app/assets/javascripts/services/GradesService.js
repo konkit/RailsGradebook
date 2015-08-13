@@ -12,21 +12,33 @@ services.factory('GradesService', ['$http', function ($http) {
       grades: []
     };
 
-    o.getFakeGrades = function() {
-      return [
-        {
-          subject: 'Maths',
-          grades: [5, 4, 3, 4, 5]
-        },
-        {
-          subject: 'English',
-          grades: [5, 4, 3, 4, 5]
-        }
-      ];
-    }
-
     o.getStudentGrades = function(student_id) {
       return $http.get('/students/' + student_id + '/view_students_grades.json')
+    }
+
+    o.createGrade = function(student_id, subject_id, gradevalue ) {
+      return $http.post( 'grades/',
+        {
+          'student_id': student_id,
+          'subject_id': subject_id,
+          'gradevalue': gradevalue
+        }
+      )
+    }
+
+    o.updateGrade = function(grade ) {
+      return $http.put( 'grades/' + grade.id,
+        {
+          'gradevalue': grade.value
+        }
+      )
+    }
+
+    o.deleteGrade = function(grade ) {
+      console.log("GradeService, grade : ");
+      console.log(grade)
+
+      return $http.delete( 'grades/' + grade.id )
     }
 
     return o;
