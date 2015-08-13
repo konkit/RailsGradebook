@@ -17,6 +17,8 @@ class GradesController < ApplicationController
     else
       render json: @grade.errors, status: :unprocessable_entity
     end
+  rescue StandardError => e
+    render json: { errors: e.message }, status: :unprocessable_entity
   end
 
   # PATCH/PUT /grades/1
@@ -25,8 +27,10 @@ class GradesController < ApplicationController
     if @grade.update(grade_params)
       render :show, status: :ok, location: @grade
     else
-      render json: @grade.errors, status: :unprocessable_entity
+      render json: {errors: @grade.errors}, status: :unprocessable_entity
     end
+  rescue StandardError => e
+    render json: { errors: e.message }, status: :unprocessable_entity
   end
 
   # DELETE /grades/1

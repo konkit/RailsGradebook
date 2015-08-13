@@ -16,7 +16,7 @@ gradebookApp.controller('GradeEditModalController', function ($scope, $modalInst
         $modalInstance.close();
       })
       .error(function(response) {
-        addAlert(response, 'danger');
+        $scope.addAlert(response.errors, 'danger');
       })
   };
 
@@ -29,7 +29,7 @@ gradebookApp.controller('GradeEditModalController', function ($scope, $modalInst
         $modalInstance.close();
       })
       .error(function(response) {
-        addAlert(response, 'danger');
+        $scope.addAlert(response.errors, 'danger');
       })
   };
 

@@ -35,9 +35,6 @@ services.factory('GradesService', ['$http', function ($http) {
     }
 
     o.deleteGrade = function(grade ) {
-      console.log("GradeService, grade : ");
-      console.log(grade)
-
       return $http.delete( 'grades/' + grade.id )
     }
 
