@@ -26,13 +26,11 @@ gradebookApp.controller('TeacherCRUDController', function($scope, TeachersServic
       $scope.openEdit = function(teacher) {
         var modalInstance = $modal.open( {
           animation: true,
-          templateUrl: '/assets/grade_edit_modal.html',
-          controller: 'GradeEditModalController',
+          templateUrl: '/assets/teacher_edit_modal.html',
+          controller: 'TeacherEditModalController',
           size: 'md',
           resolve: {
-            subject: function() { return subject; },
-            student: function() { return student; },
-            grade: function() { return grade; }
+            teacher: function() { return teacher; }
           }
         })
 

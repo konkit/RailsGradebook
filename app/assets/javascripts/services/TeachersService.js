@@ -15,11 +15,15 @@ services.factory('TeachersService', ['$http', function ($http) {
       )
     }
 
-    o.update = function(grade ) {
-
+    o.update = function(teacher ) {
+      return $http.put( 'teachers/' + teacher.id + '.json',
+        {
+          'teacher': teacher
+        }
+      )
     }
 
-    o.delete = function(grade ) {
+    o.delete = function(teacher ) {
     }
 
     return o;
