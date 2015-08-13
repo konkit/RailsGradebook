@@ -16,6 +16,7 @@ gradebookApp.controller('GradeEditModalController', function ($scope, $modalInst
         $modalInstance.close();
       })
       .error(function(response) {
+        $(obj.currentTarget).prop('disabled', false);
         $scope.addAlert(response.errors, 'danger');
       })
   };

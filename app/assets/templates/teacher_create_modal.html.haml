@@ -1,0 +1,21 @@
+.modal-header
+  %h3 Create Teacher
+
+.modal-body
+  %alert{:close => "closeAlert($index)", "ng-repeat" => "alert in alerts", :type => "{{alert.type}}"} {{alert.msg}}
+
+  %label Name
+  %input.form-control{"ng-model" => "teacher.name"}
+
+  %label Email
+  %input.form-control{"ng-model" => "teacher.email"}
+
+  %label Password
+  %input.form-control{"ng-model" => "teacher.password", "type" => "password"}
+
+  %label Password confirmation
+  %input.form-control{"ng-model" => "teacher.password_confirmation", "type" => "password"}
+
+.modal-footer
+  %button.btn.btn-primary{:type => "button", "ng-click" => "ok($event)"} Save
+  %button.btn.btn-warning{:type => "button", "ng-click" => "cancel()"} Cancel

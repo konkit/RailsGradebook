@@ -1,4 +1,3 @@
 json.array!(@teachers) do |teacher|
-  json.extract! teacher, :id
-  json.url teacher_url(teacher, format: :json)
+  json.extract! teacher, :id, :name, :email
 end

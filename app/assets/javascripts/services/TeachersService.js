@@ -3,38 +3,23 @@ services.factory('TeachersService', ['$http', function ($http) {
       grades: []
     };
 
-    o.getStudentGrades = function(student_id) {
-      return $http.get('/students/' + student_id + '/view_students_grades.json')
+    o.getTeachers = function() {
+      return $http.get( 'teachers.json' )
     }
 
-    o.getGrades = function(subject, division) {
-      return $http.get('/teachers/get_grades.json?subject_id=' + subject.id + '&division_id=' + division.id )
-    }
-
-    o.getSubjectsAndDivisions = function() {
-      return $http.get('/teachers/subjects_and_divisions.json')
-    }
-
-    o.createGrade = function(student_id, subject_id, gradevalue ) {
-      return $http.post( 'grades/',
+    o.create = function( teacher ) {
+      return $http.post( 'teachers/',
         {
-          'student_id': student_id,
-          'subject_id': subject_id,
-          'gradevalue': gradevalue
+          'teacher': teacher
         }
       )
     }
 
-    o.updateGrade = function(grade ) {
-      return $http.put( 'grades/' + grade.id,
-        {
-          'gradevalue': grade.value
-        }
-      )
+    o.update = function(grade ) {
+
     }
 
-    o.deleteGrade = function(grade ) {
-      return $http.delete( 'grades/' + grade.id )
+    o.delete = function(grade ) {
     }
 
     return o;

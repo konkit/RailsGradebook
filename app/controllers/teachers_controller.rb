@@ -42,14 +42,10 @@ class TeachersController < ApplicationController
   def create
     @teacher = Teacher.new(teacher_params)
 
-    respond_to do |format|
-      if @teacher.save
-        format.html { redirect_to @teacher, notice: 'Teacher was successfully created.' }
-        format.json { render :show, status: :created, location: @teacher }
-      else
-        format.html { render :new }
-        format.json { render json: @teacher.errors, status: :unprocessable_entity }
-      end
+    if @teacher.save
+      render :show, status: :created, location: @teacher
+    else
+      render json: { errors: @teacher.errors}, status: :unprocessable_entity
     end
   end
 
@@ -85,6 +81,6 @@ class TeachersController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def teacher_params
-      params[:teacher]
+      params.require(:teacher).permit(:name, :email, :password, :password_confirmation)
     end
 end

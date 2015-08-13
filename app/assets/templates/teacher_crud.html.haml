@@ -5,7 +5,7 @@
     .row
       .col-md-4
         %p{"style" => "padding-top: 24px;" }
-          %button.btn.btn-primary{"ng-click" => "createTeacher()"} New teacher
+          %button.btn.btn-primary{"ng-click" => "openCreate()"} New teacher
 
     %hr
 
@@ -15,7 +15,7 @@
           %th Teacher
           %th
       %tbody
-        %tr{"ng-repeat" => "teacher in teacherData"}
+        %tr{"ng-repeat" => "teacher in teachersData"}
           %td
             {{teacher.name}}
           %td

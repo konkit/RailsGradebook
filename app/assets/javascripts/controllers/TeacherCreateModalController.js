@@ -1,18 +1,9 @@
-gradebookApp.controller('GradeCreateModalController', function ($scope, $modalInstance, GradesService, subject, student) {
-  $scope.student = student;
-  $scope.subject = subject;
-  $scope.selectedGradeValue = 1;
-
-  $scope.selectGrade = function(obj) {
-    $('.grades-list').children().removeClass('btn-primary').addClass('btn-default');
-    $(obj.currentTarget).addClass('btn-primary');
-    $scope.selectedGradeValue = parseInt( obj.currentTarget.innerText );
-  }
+gradebookApp.controller('TeacherCreateModalController', function ($scope, $modalInstance, TeachersService) {
 
   $scope.ok = function (obj) {
     $(obj.currentTarget).prop('disabled', true);
 
-    GradesService.createGrade(student.id, subject.id, $scope.selectedGradeValue)
+    TeachersService.create($scope.teacher)
       .success(function(response) {
         $modalInstance.close();
       })
