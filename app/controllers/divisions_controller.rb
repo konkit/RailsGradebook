@@ -17,6 +17,8 @@ class DivisionsController < ApplicationController
     else
       render json: {errors: @division.errors}, status: :unprocessable_entity
     end
+  rescue StandardError => e
+    render json: { errors: e.message }, status: :unprocessable_entity
   end
 
   # PATCH/PUT /divisions/1
@@ -29,6 +31,8 @@ class DivisionsController < ApplicationController
     else
       render json: {errors: @division.errors}, status: :unprocessable_entity
     end
+  rescue StandardError => e
+    render json: { errors: e.message }, status: :unprocessable_entity
   end
 
   # DELETE /divisions/1
@@ -36,6 +40,8 @@ class DivisionsController < ApplicationController
   def destroy
     @division.destroy
     head :no_content
+  rescue StandardError => e
+    render json: { errors: e.message }, status: :unprocessable_entity
   end
 
   private

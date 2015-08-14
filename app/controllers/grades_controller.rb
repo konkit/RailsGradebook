@@ -35,6 +35,8 @@ class GradesController < ApplicationController
     authorize! :destroy, @grade
     @grade.destroy
     head :no_content
+  rescue StandardError => e
+    render json: { errors: e.message }, status: :unprocessable_entity
   end
 
   private

@@ -17,6 +17,8 @@ class SubjectsController < ApplicationController
     else
       render json: {errors: @subject.errors}, status: :unprocessable_entity
     end
+  rescue StandardError => e
+    render json: { errors: e.message }, status: :unprocessable_entity
   end
 
   # PATCH/PUT /subjects/1
@@ -27,6 +29,8 @@ class SubjectsController < ApplicationController
     else
       render json: {errors: @subject.errors}, status: :unprocessable_entity
     end
+  rescue StandardError => e
+    render json: { errors: e.message }, status: :unprocessable_entity
   end
 
   # DELETE /subjects/1
@@ -34,6 +38,8 @@ class SubjectsController < ApplicationController
   def destroy
     @subject.destroy
     head :no_content
+  rescue StandardError => e
+    render json: { errors: e.message }, status: :unprocessable_entity
   end
 
   private

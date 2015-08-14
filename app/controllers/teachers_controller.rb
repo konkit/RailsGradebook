@@ -33,6 +33,8 @@ class TeachersController < ApplicationController
     else
       render json: { errors: @teacher.errors}, status: :unprocessable_entity
     end
+  rescue StandardError => e
+    render json: { errors: e.message }, status: :unprocessable_entity
   end
 
   # PATCH/PUT /teachers/1
@@ -43,6 +45,8 @@ class TeachersController < ApplicationController
     else
       render json: {errors: @teacher.errors}, status: :unprocessable_entity
     end
+  rescue StandardError => e
+    render json: { errors: e.message }, status: :unprocessable_entity
   end
 
   # DELETE /teachers/1
@@ -50,6 +54,8 @@ class TeachersController < ApplicationController
   def destroy
     @teacher.destroy
     head :no_content
+  rescue StandardError => e
+    render json: { errors: e.message }, status: :unprocessable_entity
   end
 
   private
