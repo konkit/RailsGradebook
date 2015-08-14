@@ -16,6 +16,9 @@
   %label Password confirmation
   %input.form-control{"ng-model" => "student.password_confirmation", "type" => "password"}
 
+  %label Division
+  %select.form-control{"ng-model" => "student.division_id", "ng-options" => "division.id as division.name for division in divisionsData"}
+
 .modal-footer
   %button.btn.btn-primary{:type => "button", "ng-click" => "ok($event)"} Save
   %button.btn.btn-warning{:type => "button", "ng-click" => "cancel()"} Cancel

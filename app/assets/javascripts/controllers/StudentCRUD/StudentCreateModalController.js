@@ -1,4 +1,8 @@
-gradebookApp.controller('StudentCreateModalController', function ($scope, $modalInstance, StudentsService) {
+gradebookApp.controller('StudentCreateModalController', function ($scope, $modalInstance, StudentsService, DivisionsService) {
+
+  DivisionsService.getDivisions().success(function(data) {
+    $scope.divisionsData = data;
+  });
 
   $scope.ok = function (obj) {
     $(obj.currentTarget).prop('disabled', true);
