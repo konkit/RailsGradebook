@@ -7,6 +7,9 @@
   %label Name
   %input.form-control{"ng-model" => "subject.name"}
 
+  %label Teacher
+  %select.form-control{"ng-model" => "subject.teacher_id", "ng-options" => "teacher.id as teacher.name for teacher in teachersData"}
+
 .modal-footer
   %button.btn.btn-primary{:type => "button", "ng-click" => "ok($event)"} Save
   %button.btn.btn-warning{:type => "button", "ng-click" => "cancel()"} Cancel

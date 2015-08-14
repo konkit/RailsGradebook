@@ -1,4 +1,4 @@
-gradebookApp.controller('SubjectCRUDController', function($scope, SubjectsService, $modal) {
+gradebookApp.controller('SubjectCRUDController', function($scope, SubjectsService, TeachersService, $modal) {
 
       $scope.getSubjects = function() {
         SubjectsService.getSubjects().success(function(data) {
@@ -7,6 +7,11 @@ gradebookApp.controller('SubjectCRUDController', function($scope, SubjectsServic
       }
       $scope.getSubjects();
 
+      // Get teachers to enable choosing leading teacher of the subject
+      TeachersService.getTeachers().success(function(data) {
+        $scope.teachersData = data;
+      });
+
       $scope.openCreate = function(subject) {
         var modalInstance = $modal.open( {
           animation: true,
@@ -14,7 +19,8 @@ gradebookApp.controller('SubjectCRUDController', function($scope, SubjectsServic
           controller: 'SubjectCreateModalController',
           size: 'md',
           resolve: {
-            subject: function() { return subject; }
+            subject: function() { return subject; },
+            teachersData: function() { return $scope.teachersData; }
           }
         })
 
@@ -30,7 +36,8 @@ gradebookApp.controller('SubjectCRUDController', function($scope, SubjectsServic
           controller: 'SubjectEditModalController',
           size: 'md',
           resolve: {
-            subject: function() { return subject; }
+            subject: function() { return subject; },
+            teachersData: function() { return $scope.teachersData; }
           }
         })
 

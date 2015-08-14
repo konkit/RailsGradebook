@@ -13,11 +13,14 @@
       %thead
         %tr
           %th Subject
+          %th Assigned teacher
           %th
       %tbody
         %tr{"ng-repeat" => "subject in subjectsData"}
           %td
             {{subject.name}}
+          %td
+            {{subject.teacher.name}}
           %td
             %button.btn.btn-primary{"ng-click" => "openEdit(subject)"}
               Edit

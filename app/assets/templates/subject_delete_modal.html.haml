@@ -4,7 +4,7 @@
 .modal-body
   %alert{:close => "closeAlert($index)", "ng-repeat" => "alert in alerts", :type => "{{alert.type}}"} {{alert.msg}}
 
-  %h3 Are you sure you want to delete division?
+  %h3 Are you sure you want to delete subject?
 
 .modal-footer
   %button.btn.btn-primary{:type => "button", "ng-click" => "ok($event)"} Yes, delete!

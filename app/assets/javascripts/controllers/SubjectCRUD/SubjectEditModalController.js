@@ -1,5 +1,6 @@
-gradebookApp.controller('SubjectEditModalController', function ($scope, $modalInstance, SubjectsService, subject) {
+gradebookApp.controller('SubjectEditModalController', function ($scope, $modalInstance, SubjectsService, subject, teachersData) {
   $scope.subject = subject;
+  $scope.teachersData = teachersData;
 
   $scope.ok = function (obj) {
     $(obj.currentTarget).prop('disabled', true);
