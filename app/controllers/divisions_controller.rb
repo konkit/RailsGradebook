@@ -22,6 +22,8 @@ class DivisionsController < ApplicationController
   # PATCH/PUT /divisions/1
   # PATCH/PUT /divisions/1.json
   def update
+    @division.subjects = get_subjects_ids
+    @division.save
     if @division.update(division_params)
       render :show, status: :ok, location: @division
     else
@@ -42,8 +44,13 @@ class DivisionsController < ApplicationController
       @division = Division.find(params[:id])
     end
 
+    def get_subjects_ids
+      subject_params = params[:subjects] || []
+      Subject.find(subject_params.map{|x| x[:id] })
+    end
+
     # Never trust parameters from the scary internet, only allow the white list through.
     def division_params
-      params.require(:division).permit(:name)
+      params.require(:division).permit(:name, :id)
     end
 end

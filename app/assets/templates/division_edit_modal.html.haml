@@ -7,6 +7,12 @@
   %label Name
   %input.form-control{"ng-model" => "division.name"}
 
+
+  %p
+    %label Subjects:
+  .btn-group-vertical
+    %label.btn.btn-default{ "ng-repeat" => "subject in subjectsData", "ng-model" => "assignedSubjects[subject.id].assigned", "btn-checkbox" => ""} {{subject.name}}
+
 .modal-footer
   %button.btn.btn-primary{:type => "button", "ng-click" => "ok($event)"} Save
   %button.btn.btn-warning{:type => "button", "ng-click" => "cancel()"} Cancel

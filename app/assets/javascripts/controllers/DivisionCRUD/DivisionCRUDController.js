@@ -1,10 +1,15 @@
-gradebookApp.controller('DivisionCRUDController', function($scope, DivisionsService, $modal) {
+gradebookApp.controller('DivisionCRUDController', function($scope, DivisionsService, SubjectsService, $modal) {
     $scope.getDivisions = function() {
       DivisionsService.getDivisions().success(function(data) {
         $scope.divisionsData = data;
       });
     }
     $scope.getDivisions();
+
+    // Get teachers to enable choosing leading teacher of the subject
+    SubjectsService.getSubjects().success(function(data) {
+      $scope.subjectsData = data;
+    });
 
     $scope.openCreate = function(division) {
       var modalInstance = $modal.open( {
@@ -29,7 +34,8 @@ gradebookApp.controller('DivisionCRUDController', function($scope, DivisionsServ
         controller: 'DivisionEditModalController',
         size: 'md',
         resolve: {
-          division: function() { return division; }
+          division: function() { return division; },
+          subjectsData: function() { return $scope.subjectsData; }
         }
       })
 

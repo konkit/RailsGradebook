@@ -15,10 +15,11 @@ services.factory('DivisionsService', ['$http', function ($http) {
       )
     }
 
-    o.update = function( division ) {
+    o.update = function( division, subjects ) {
       return $http.put( 'divisions/' + division.id + '.json',
         {
-          'division': division
+          'division': division,
+          'subjects': subjects
         }
       )
     }
