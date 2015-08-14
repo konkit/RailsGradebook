@@ -13,9 +13,9 @@ class DivisionsController < ApplicationController
     @division = Division.new(division_params)
 
     if @division.save
-      render json: :show, status: :created, location: @division
+      render json: {errors: ""}, status: :created, location: @division
     else
-      render json: @division.errors, status: :unprocessable_entity
+      render json: {errors: @division.errors}, status: :unprocessable_entity
     end
   end
 
@@ -25,9 +25,9 @@ class DivisionsController < ApplicationController
     @division.subjects = get_subjects_ids
     @division.save
     if @division.update(division_params)
-      render :show, status: :ok, location: @division
+      render json: {errors: ""}, status: :ok, location: @division
     else
-      render json: @division.errors, status: :unprocessable_entity
+      render json: {errors: @division.errors}, status: :unprocessable_entity
     end
   end
 

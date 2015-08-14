@@ -3,13 +3,13 @@ class StudentsController < ApplicationController
   respond_to :json
 
   def view_students_grades
-    student = Student.find(params[:id])
+    @student = Student.find(params[:id])
     authorize! :view_students_grades, student
-    respond_with student.grades
+    respond_with @student.grades
       .group_by { |grade| grade.subject }
       .map { |subject, grades|
         {
-          student: { id: student.id, name: student.name},
+          student: { id: @student.id, name: @student.name},
           subject: { name: subject.name, id: subject.id},
           grades: grades.map { |grade|
             {
@@ -33,28 +33,20 @@ class StudentsController < ApplicationController
   def create
     @student = Student.new(student_params)
 
-    respond_to do |format|
-      if @student.save
-        format.html { redirect_to @student, notice: 'Student was successfully created.' }
-        format.json { render :show, status: :created, location: @student }
-      else
-        format.html { render :new }
-        format.json { render json: @student.errors, status: :unprocessable_entity }
-      end
+    if @student.save
+      render json: {errors: "" } status: :created, location: @student
+    else
+      render json: { errors: @student.errors }, status: :unprocessable_entity
     end
   end
 
   # PATCH/PUT /students/1
   # PATCH/PUT /students/1.json
   def update
-    respond_to do |format|
-      if @student.update(student_params)
-        format.html { redirect_to @student, notice: 'Student was successfully updated.' }
-        format.json { render :show, status: :ok, location: @student }
-      else
-        format.html { render :edit }
-        format.json { render json: @student.errors, status: :unprocessable_entity }
-      end
+    if @student.update(student_params)
+      render json: { errors: "" }, status: :ok, location: @student
+    else
+      render json: { errors: @student.errors }, status: :unprocessable_entity
     end
   end
 
@@ -62,10 +54,7 @@ class StudentsController < ApplicationController
   # DELETE /students/1.json
   def destroy
     @student.destroy
-    respond_to do |format|
-      format.html { redirect_to students_url, notice: 'Student was successfully destroyed.' }
-      format.json { head :no_content }
-    end
+    head :no_content
   end
 
   private

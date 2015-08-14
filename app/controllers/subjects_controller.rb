@@ -13,9 +13,9 @@ class SubjectsController < ApplicationController
     @subject = Subject.new(subject_params)
 
     if @subject.save
-      render json: :show, status: :created, location: @subject
+      render json: {errors: ""}, status: :created, location: @subject
     else
-      render json: @subject.errors, status: :unprocessable_entity
+      render json: {errors: @subject.errors}, status: :unprocessable_entity
     end
   end
 
@@ -23,9 +23,9 @@ class SubjectsController < ApplicationController
   # PATCH/PUT /subjects/1.json
   def update
     if @subject.update(subject_params)
-      render json: :show, status: :ok, location: @subject
+      render json: {errors: ""}, status: :ok, location: @subject
     else
-      render json: @subject.errors, status: :unprocessable_entity
+      render json: {errors: @subject.errors}, status: :unprocessable_entity
     end
   end
 

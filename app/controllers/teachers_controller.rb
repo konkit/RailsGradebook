@@ -23,21 +23,7 @@ class TeachersController < ApplicationController
     @teachers = Teacher.all
   end
 
-  # GET /teachers/1
-  # GET /teachers/1.json
-  def show
-  end
-
-  # GET /teachers/new
-  def new
-    @teacher = Teacher.new
-  end
-
-  # GET /teachers/1/edit
-  def edit
-  end
-
-  # POST /teachers
+    # POST /teachers
   # POST /teachers.json
   def create
     @teacher = Teacher.new(teacher_params)
@@ -53,9 +39,9 @@ class TeachersController < ApplicationController
   # PATCH/PUT /teachers/1.json
   def update
     if @teacher.update(teacher_params)
-      render :show, status: :ok, location: @teacher
+      render json: {errors: ""}, status: :ok, location: @teacher
     else
-      render json: @teacher.errors, status: :unprocessable_entity
+      render json: {errors: @teacher.errors}, status: :unprocessable_entity
     end
   end
 

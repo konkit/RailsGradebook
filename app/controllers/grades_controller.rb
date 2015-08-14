@@ -8,9 +8,9 @@ class GradesController < ApplicationController
     @grade = Grade.new(grade_params)
     authorize! :create, @grade
     if @grade.save
-      render :show, status: :created, location: @grade
+      render json: {errors: ""}, status: :created, location: @grade
     else
-      render json: @grade.errors, status: :unprocessable_entity
+      render json: { errors: @grade.errors }, status: :unprocessable_entity
     end
   rescue StandardError => e
     render json: { errors: e.message }, status: :unprocessable_entity
@@ -21,7 +21,7 @@ class GradesController < ApplicationController
   def update
     authorize! :update, @grade
     if @grade.update(grade_params)
-      render :show, status: :ok, location: @grade
+      render json: {errors: ""} status: :ok, location: @grade
     else
       render json: {errors: @grade.errors}, status: :unprocessable_entity
     end
