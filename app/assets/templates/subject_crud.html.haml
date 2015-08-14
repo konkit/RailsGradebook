@@ -1,0 +1,25 @@
+.panel.col-md-10.col-md-offset-1
+  .panel-heading
+    %h1 Administration - Subjects
+  .panel-body
+    .row
+      .col-md-4
+        %p{"style" => "padding-top: 24px;" }
+          %button.btn.btn-primary{"ng-click" => "openCreate()"} New subject
+
+    %hr
+
+    %table.table
+      %thead
+        %tr
+          %th Subject
+          %th
+      %tbody
+        %tr{"ng-repeat" => "subject in subjectsData"}
+          %td
+            {{subject.name}}
+          %td
+            %button.btn.btn-primary{"ng-click" => "openEdit(subject)"}
+              Edit
+            %button.btn.btn-danger{"ng-click" => "openDelete(subject)"}
+              Delete

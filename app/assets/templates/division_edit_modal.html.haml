@@ -1,0 +1,12 @@
+.modal-header
+  %h3 Edit division
+
+.modal-body
+  %alert{:close => "closeAlert($index)", "ng-repeat" => "alert in alerts", :type => "{{alert.type}}"} {{alert.msg}}
+
+  %label Name
+  %input.form-control{"ng-model" => "division.name"}
+
+.modal-footer
+  %button.btn.btn-primary{:type => "button", "ng-click" => "ok($event)"} Save
+  %button.btn.btn-warning{:type => "button", "ng-click" => "cancel()"} Cancel

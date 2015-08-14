@@ -34,6 +34,16 @@ gradebookApp.config([
         url: '/student_crud/',
         templateUrl: '/assets/student_crud.html',
         controller: 'StudentCRUDController'
+      })
+      .state('divisioncrud', {
+        url: '/division_crud/',
+        templateUrl: '/assets/division_crud.html',
+        controller: 'DivisionCRUDController'
+      })
+      .state('subjectcrud', {
+        url: '/subject_crud/',
+        templateUrl: '/assets/subject_crud.html',
+        controller: 'SubjectCRUDController'
       });
   }
 ])

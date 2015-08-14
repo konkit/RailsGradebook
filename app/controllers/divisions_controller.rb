@@ -1,5 +1,5 @@
 class DivisionsController < ApplicationController
-  before_action :set_division, only: [:show, :edit, :update, :destroy]
+  before_action :set_division, only: [:update, :destroy]
 
   # GET /divisions
   # GET /divisions.json
@@ -7,47 +7,25 @@ class DivisionsController < ApplicationController
     @divisions = Division.all
   end
 
-  # GET /divisions/1
-  # GET /divisions/1.json
-  def show
-  end
-
-  # GET /divisions/new
-  def new
-    @division = Division.new
-  end
-
-  # GET /divisions/1/edit
-  def edit
-  end
-
   # POST /divisions
   # POST /divisions.json
   def create
     @division = Division.new(division_params)
 
-    respond_to do |format|
-      if @division.save
-        format.html { redirect_to @division, notice: 'Division was successfully created.' }
-        format.json { render :show, status: :created, location: @division }
-      else
-        format.html { render :new }
-        format.json { render json: @division.errors, status: :unprocessable_entity }
-      end
+    if @division.save
+      render json: :show, status: :created, location: @division
+    else
+      render json: @division.errors, status: :unprocessable_entity
     end
   end
 
   # PATCH/PUT /divisions/1
   # PATCH/PUT /divisions/1.json
   def update
-    respond_to do |format|
-      if @division.update(division_params)
-        format.html { redirect_to @division, notice: 'Division was successfully updated.' }
-        format.json { render :show, status: :ok, location: @division }
-      else
-        format.html { render :edit }
-        format.json { render json: @division.errors, status: :unprocessable_entity }
-      end
+    if @division.update(division_params)
+      render :show, status: :ok, location: @division
+    else
+      render json: @division.errors, status: :unprocessable_entity
     end
   end
 
@@ -55,10 +33,7 @@ class DivisionsController < ApplicationController
   # DELETE /divisions/1.json
   def destroy
     @division.destroy
-    respond_to do |format|
-      format.html { redirect_to divisions_url, notice: 'Division was successfully destroyed.' }
-      format.json { head :no_content }
-    end
+    head :no_content
   end
 
   private
@@ -69,6 +44,6 @@ class DivisionsController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def division_params
-      params[:division]
+      params.require(:division).permit(:name)
     end
 end

@@ -1,0 +1,25 @@
+.panel.col-md-10.col-md-offset-1
+  .panel-heading
+    %h1 Administration - Divisions
+  .panel-body
+    .row
+      .col-md-4
+        %p{"style" => "padding-top: 24px;" }
+          %button.btn.btn-primary{"ng-click" => "openCreate()"} New division
+
+    %hr
+
+    %table.table
+      %thead
+        %tr
+          %th Division
+          %th
+      %tbody
+        %tr{"ng-repeat" => "division in divisionsData"}
+          %td
+            {{division.name}}
+          %td
+            %button.btn.btn-primary{"ng-click" => "openEdit(division)"}
+              Edit
+            %button.btn.btn-danger{"ng-click" => "openDelete(division)"}
+              Delete
