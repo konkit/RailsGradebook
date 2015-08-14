@@ -16,7 +16,7 @@ gradebookApp.config([
         controller: 'MainController'
       })
       .state('studentgrades', {
-        url: '/student_dashboard',
+        url: '/student_dashboard/',
         templateUrl: '/assets/student_dashboard.html',
         controller: 'StudentDashboardController'
       })
