@@ -21,7 +21,7 @@ class GradesController < ApplicationController
   def update
     authorize! :update, @grade
     if @grade.update(grade_params)
-      render json: {errors: ""} status: :ok, location: @grade
+      render json: {errors: ""}, status: :ok, location: @grade
     else
       render json: {errors: @grade.errors}, status: :unprocessable_entity
     end

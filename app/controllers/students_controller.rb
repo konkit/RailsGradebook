@@ -34,7 +34,7 @@ class StudentsController < ApplicationController
     @student = Student.new(student_params)
 
     if @student.save
-      render json: {errors: "" } status: :created, location: @student
+      render json: {errors: "" }, status: :created, location: @student
     else
       render json: { errors: @student.errors }, status: :unprocessable_entity
     end

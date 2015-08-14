@@ -29,7 +29,7 @@ class TeachersController < ApplicationController
     @teacher = Teacher.new(teacher_params)
 
     if @teacher.save
-      render :show, status: :created, location: @teacher
+      render json: { errors: ""}, status: :created, location: @teacher
     else
       render json: { errors: @teacher.errors}, status: :unprocessable_entity
     end
