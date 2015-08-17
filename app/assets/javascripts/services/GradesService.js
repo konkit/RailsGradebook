@@ -4,7 +4,7 @@ services.factory('GradesService', ['$http', function ($http) {
     };
 
     o.getStudentGrades = function(student_id) {
-      return $http.get('/students/' + student_id + '/view_students_grades.json')
+      return $http.get('/students/get_students_grades.json')
     }
 
     o.getGrades = function(subject, division) {

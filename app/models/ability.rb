@@ -45,7 +45,7 @@ class Ability
     # Teacher can manage the Grades of the subjects he is involved
     can :manage, Grade, :subject => { :teacher => user }
 
-    can :view_students_grades, Student
+    can :get_students_grades, Student
 
     can :see_his_subjects, Subject, :teacher => user
 
@@ -55,7 +55,7 @@ class Ability
 
   def init_student_abilities(user)
     # Student can see his own grades
-    can :view_students_grades, Student, :id => user.id
+    can :get_students_grades, Student, :id => user.id
 
     can :change_password, Student, :id => user.id
   end

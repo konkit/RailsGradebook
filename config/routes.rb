@@ -1,7 +1,8 @@
 Rails.application.routes.draw do
   get 'welcome/index'
+  get 'welcome/get_current_user'
 
-  devise_for :users
+  devise_for :users, :controllers => {sessions: 'sessions'}
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
 
@@ -18,8 +19,8 @@ Rails.application.routes.draw do
   end
 
   resources :students do
-    member do
-      get 'view_students_grades'
+    collection do
+      get 'get_students_grades'
     end
   end
 

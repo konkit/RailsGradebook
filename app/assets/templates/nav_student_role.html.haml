@@ -5,9 +5,8 @@
     %div
       %ul.nav.navbar-nav.navbar-right
         %li
-          %a{"ng-click" => "openLoginModal()"} Sign in
-
-%h1
-  Velkommen
+          %a Welcome {{current_user.name}}
+        %li
+          %a{"ng-click" => "logout()"} Sign out
 
 %ui-view

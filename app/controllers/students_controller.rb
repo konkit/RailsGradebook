@@ -2,9 +2,9 @@ class StudentsController < ApplicationController
   before_action :set_student, only: [:show, :edit, :update, :destroy]
   respond_to :json
 
-  def view_students_grades
-    @student = Student.find(params[:id])
-    authorize! :view_students_grades, student
+  def get_students_grades
+    @student = current_user
+    authorize! :get_students_grades, @student
     respond_with @student.grades
       .group_by { |grade| grade.subject }
       .map { |subject, grades|

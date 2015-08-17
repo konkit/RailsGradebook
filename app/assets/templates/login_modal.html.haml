@@ -1,0 +1,14 @@
+.modal-header
+  %h3 Sign in
+
+.modal-body
+  %alert{:close => "closeAlert($index)", "ng-repeat" => "alert in alerts", :type => "{{alert.type}}"} {{alert.msg}}
+
+  %label Email
+  %input.form-control{"ng-model" => "user_credentials.email"}
+
+  %label Password
+  %input.form-control{"ng-model" => "user_credentials.password", "type" => "password"}
+
+.modal-footer
+  %button.btn.btn-primary.btn-block{:type => "button", "ng-click" => "ok($event)"} Login
