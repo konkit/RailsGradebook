@@ -1,6 +1,20 @@
 gradebookApp.controller('HomeController', function($scope, LoginService, $modal, $state) {
     $scope.current_user = {name: ''}
 
+    $scope.moveToDashboard = function(response) {
+      var role = $scope.current_user.role.toLowerCase()
+
+      if( role == 'student') {
+        $state.go('studentRole.studentDashboard');
+      } else if( role == 'teacher') {
+        $state.go('teacherRole.teacherDashboard');
+      } else if( role == 'principal' ) {
+        $state.go('principalRole.principalDashboard');
+      } else {
+        $state.go('app');
+      }
+    }
+
     refreshCurrentUserData = function(callback) {
       LoginService.getCurrentUser().success(function(response) {
         $scope.current_user = response;
@@ -9,10 +23,10 @@ gradebookApp.controller('HomeController', function($scope, LoginService, $modal,
           $state.go('app');
         }
 
-        typeof callback === 'function' && callback();
+        $scope.moveToDashboard();
       });
     };
-    refreshCurrentUserData();
+    refreshCurrentUserData($scope.moveToDashboard);
 
     $scope.openLoginModal = function() {
       var modalInstance = $modal.open( {
@@ -27,19 +41,7 @@ gradebookApp.controller('HomeController', function($scope, LoginService, $modal,
       });
     }
 
-    $scope.moveToDashboard = function(response) {
-      var role = $scope.current_user.role.toLowerCase()
 
-      if( role == 'student') {
-        $state.go('studentRole.studentDashboard');
-      } else if( role == 'teacher') {
-        $state.go('teacherRole.teacherDashboard');
-      } else if( role == 'principal' ) {
-        $state.go('principalRole.principalDashboard');
-      } else {
-        $state.go('app');
-      }
-    }
 
     $scope.logout = function() {
       LoginService.logout().success(function() {

@@ -3,6 +3,9 @@
     .navbar-header
       .navbar-brand Gradebook App
     %div
+      %ul.nav.navbar-nav
+        %li
+          %a{"ng-click" => ""} Grades edit
       %ul.nav.navbar-nav.navbar-right
         %li
           %a Welcome {{current_user.name}}

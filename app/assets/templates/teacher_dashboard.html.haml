@@ -3,15 +3,11 @@
     %h1 Teacher - Grades
   .panel-body
     .row
-      %p Selected subject  : {{selectedSubject.name}}
-      %p Selected division : {{selectedDivision.name}}
-
-    .row
       .col-md-4
         %label Select subject
         %select.form-control{"ng-options" => "item.name for item in subjects_and_divisions", "ng-model" => "selectedSubject", "ng-change" => "getGrades()"}
       .col-md-4
-        %label select division
+        %label Select division
         %select.form-control{"ng-options" => "item.name for item in selectedSubject.divisions", "ng-model" => "selectedDivision", "ng-change" => "getGrades()"}
       .col-md-4
         %p{"style" => "padding-top: 24px;" }

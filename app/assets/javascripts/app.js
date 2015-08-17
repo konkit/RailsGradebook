@@ -37,6 +37,11 @@ gradebookApp.config( function($stateProvider, $urlRouterProvider) {
         templateUrl: '/assets/teacher_dashboard.html',
         controller: 'TeacherDashboardController'
       })
+      .state('principalRole.principalDashboard', {
+        url: '/principal_dashboard/',
+        templateUrl: '/assets/principal_dashboard.html',
+        controller: 'PrincipalDashboardController'
+      })
       .state('principalRole.teachercrud', {
         url: '/teacher_crud/',
         templateUrl: '/assets/teacher_crud.html',

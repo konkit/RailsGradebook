@@ -1,0 +1,26 @@
+%nav.navbar.navbar-default.navbar-fixed-top
+  .container-fluid
+    .navbar-header
+      .navbar-brand Gradebook App
+    %div
+      %ul.nav.navbar-nav.navbar-right
+        %li
+          %a Welcome {{current_user.name}}
+        %li
+          %a{"ng-click" => "logout()"} Sign out
+
+.container-fluid{"ng-controller" => "PrincipalNavigationController"}
+  .row.row-offcanvas.row-offcanvas-left
+    .col-sm-3.col-md-2.sidebar-offcanvas#sidebar{"role" => "navigation"}
+      .nav.nav-sidebar
+        %li
+          %a{"ng-click" => "goToStudentsCRUD()"} Students management
+        %li
+          %a{"ng-click" => "goToTeachersCRUD()"} Teachers management
+        %li
+          %a{"ng-click" => "goToDivisionsCRUD()"} Divisions Management
+        %li
+          %a{"ng-click" => "goToSubjectsCRUD()"} Subjects management
+
+    .col-sm-9.col-md-10.main
+      %ui-view
