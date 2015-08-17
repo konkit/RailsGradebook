@@ -1,4 +1,4 @@
-gradebookApp.controller('TeacherDeleteModalController', function ($scope, $modalInstance, TeachersService, teacher) {
+gradebookApp.controller('TeacherDeleteModalController', ['$scope', '$modalInstance', 'TeachersService', 'teacher', function ($scope, $modalInstance, TeachersService, teacher) {
   $scope.teacher = teacher;
 
   $scope.ok = function (obj) {
@@ -27,4 +27,4 @@ gradebookApp.controller('TeacherDeleteModalController', function ($scope, $modal
   $scope.closeAlert = function(index) {
     $scope.alerts.splice(index, 1);
   };
-});
+}]);

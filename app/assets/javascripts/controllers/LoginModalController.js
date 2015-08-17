@@ -1,4 +1,4 @@
-gradebookApp.controller('LoginModalController', function ($scope, $modalInstance, LoginService) {
+gradebookApp.controller('LoginModalController', ['$scope', '$modalInstance', 'LoginService', function ($scope, $modalInstance, LoginService) {
   $scope.user_credentials = { email: '', password: ''}
 
 
@@ -38,4 +38,4 @@ gradebookApp.controller('LoginModalController', function ($scope, $modalInstance
   $scope.closeAlert = function(index) {
     $scope.alerts.splice(index, 1);
   };
-});
+}]);

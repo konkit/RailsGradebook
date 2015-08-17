@@ -1,4 +1,4 @@
-gradebookApp.controller('TeacherCRUDController', function($scope, TeachersService, $modal) {
+gradebookApp.controller('TeacherCRUDController', ['$scope', 'TeachersService', '$modal', function($scope, TeachersService, $modal) {
 
       $scope.getTeachers = function() {
         TeachersService.getTeachers().success(function(data) {
@@ -54,6 +54,4 @@ gradebookApp.controller('TeacherCRUDController', function($scope, TeachersServic
           $scope.getTeachers();
         });
       }
-
-    }
-)
+}])

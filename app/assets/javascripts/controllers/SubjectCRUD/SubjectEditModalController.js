@@ -1,4 +1,5 @@
-gradebookApp.controller('SubjectEditModalController', function ($scope, $modalInstance, SubjectsService, subject, teachersData) {
+gradebookApp.controller('SubjectEditModalController',
+['$scope', '$modalInstance', 'SubjectsService', 'subject', 'teachersData', function ($scope, $modalInstance, SubjectsService, subject, teachersData) {
   $scope.subject = subject;
   $scope.teachersData = teachersData;
 
@@ -28,4 +29,4 @@ gradebookApp.controller('SubjectEditModalController', function ($scope, $modalIn
   $scope.closeAlert = function(index) {
     $scope.alerts.splice(index, 1);
   };
-});
+}]);

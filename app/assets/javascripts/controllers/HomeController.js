@@ -1,4 +1,4 @@
-gradebookApp.controller('HomeController', function($scope, LoginService, $modal, $state) {
+gradebookApp.controller('HomeController', ['$scope', 'LoginService', '$modal', '$state', function($scope, LoginService, $modal, $state) {
     $scope.current_user = {name: ''}
 
     $scope.moveToDashboard = function(response) {
@@ -48,5 +48,4 @@ gradebookApp.controller('HomeController', function($scope, LoginService, $modal,
         refreshCurrentUserData();
       });
     }
-  }
-)
+}])

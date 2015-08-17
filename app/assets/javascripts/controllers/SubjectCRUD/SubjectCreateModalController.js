@@ -1,4 +1,4 @@
-gradebookApp.controller('SubjectCreateModalController', function ($scope, $modalInstance, SubjectsService, teachersData) {
+gradebookApp.controller('SubjectCreateModalController', ['$scope', '$modalInstance', 'SubjectsService', 'teachersData', function ($scope, $modalInstance, SubjectsService, teachersData) {
   $scope.teachersData = teachersData;
 
   $scope.ok = function (obj) {
@@ -27,4 +27,4 @@ gradebookApp.controller('SubjectCreateModalController', function ($scope, $modal
   $scope.closeAlert = function(index) {
     $scope.alerts.splice(index, 1);
   };
-});
+}]);

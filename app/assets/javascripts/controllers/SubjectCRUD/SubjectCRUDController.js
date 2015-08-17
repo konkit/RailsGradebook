@@ -1,4 +1,4 @@
-gradebookApp.controller('SubjectCRUDController', function($scope, SubjectsService, TeachersService, $modal) {
+gradebookApp.controller('SubjectCRUDController', ['$scope', 'SubjectsService', 'TeachersService', '$modal', function($scope, SubjectsService, TeachersService, $modal) {
 
       $scope.getSubjects = function() {
         SubjectsService.getSubjects().success(function(data) {
@@ -61,6 +61,4 @@ gradebookApp.controller('SubjectCRUDController', function($scope, SubjectsServic
           $scope.getSubjects();
         });
       }
-
-    }
-)
+}])

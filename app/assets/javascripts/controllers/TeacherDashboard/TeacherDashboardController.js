@@ -1,4 +1,4 @@
-gradebookApp.controller('TeacherDashboardController', function($scope, GradesService, $modal) {
+gradebookApp.controller('TeacherDashboardController', ['$scope', 'GradesService', '$modal', function($scope, GradesService, $modal) {
       $scope.subjects_and_divisions = {};
       $scope.selectedSubject = {};
       $scope.selectedDivision = {};
@@ -59,7 +59,4 @@ gradebookApp.controller('TeacherDashboardController', function($scope, GradesSer
           $scope.getGrades();
         });
       }
-
-
-    }
-)
+}])

@@ -1,4 +1,6 @@
-gradebookApp.controller('DivisionCRUDController', function($scope, DivisionsService, SubjectsService, $modal) {
+gradebookApp.controller(
+  'DivisionCRUDController',
+  ['$scope', 'DivisionsService', 'SubjectsService', '$modal', function($scope, DivisionsService, SubjectsService, $modal) {
     $scope.getDivisions = function() {
       DivisionsService.getDivisions().success(function(data) {
         $scope.divisionsData = data;
@@ -59,6 +61,4 @@ gradebookApp.controller('DivisionCRUDController', function($scope, DivisionsServ
         $scope.getDivisions();
       });
     }
-
-  }
-)
+}]);

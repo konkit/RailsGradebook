@@ -1,4 +1,5 @@
-gradebookApp.controller('GradeEditModalController', function ($scope, $modalInstance, subject, student, grade, GradesService) {
+gradebookApp.controller('GradeEditModalController', ['$scope', '$modalInstance', 'subject', 'student', 'grade', 'GradesService',
+function ($scope, $modalInstance, subject, student, grade, GradesService) {
   $scope.student = student;
   $scope.subject = subject;
   $scope.selectedGradeValue = grade.gradevalue;
@@ -47,4 +48,4 @@ gradebookApp.controller('GradeEditModalController', function ($scope, $modalInst
   $scope.closeAlert = function(index) {
     $scope.alerts.splice(index, 1);
   };
-});
+}]);

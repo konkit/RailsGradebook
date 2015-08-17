@@ -1,4 +1,4 @@
-gradebookApp.controller('TeacherCreateModalController', function ($scope, $modalInstance, TeachersService) {
+gradebookApp.controller('TeacherCreateModalController', ['$scope', '$modalInstance', 'TeachersService', function ($scope, $modalInstance, TeachersService) {
 
   $scope.ok = function (obj) {
     $(obj.currentTarget).prop('disabled', true);
@@ -26,4 +26,4 @@ gradebookApp.controller('TeacherCreateModalController', function ($scope, $modal
   $scope.closeAlert = function(index) {
     $scope.alerts.splice(index, 1);
   };
-});
+}]);

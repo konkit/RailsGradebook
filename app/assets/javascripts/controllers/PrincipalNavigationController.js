@@ -1,4 +1,4 @@
-gradebookApp.controller('PrincipalNavigationController', function($scope, $state) {
+gradebookApp.controller('PrincipalNavigationController', ['$scope', '$state', function($scope, $state) {
   $scope.goToStudentsCRUD = function() {
     $state.go('principalRole.studentcrud');
   }
@@ -14,4 +14,4 @@ gradebookApp.controller('PrincipalNavigationController', function($scope, $state
   $scope.goToSubjectsCRUD = function() {
     $state.go('principalRole.subjectcrud');
   }
-})
+}])

@@ -1,4 +1,5 @@
-gradebookApp.controller('GradeCreateModalController', function ($scope, $modalInstance, GradesService, subject, student) {
+gradebookApp.controller('GradeCreateModalController',
+  ['$scope', '$modalInstance', 'GradesService', 'subject', 'student', function ($scope, $modalInstance, GradesService, subject, student) {
   $scope.student = student;
   $scope.subject = subject;
   $scope.selectedGradeValue = 1;
@@ -35,4 +36,4 @@ gradebookApp.controller('GradeCreateModalController', function ($scope, $modalIn
   $scope.closeAlert = function(index) {
     $scope.alerts.splice(index, 1);
   };
-});
+}]);
