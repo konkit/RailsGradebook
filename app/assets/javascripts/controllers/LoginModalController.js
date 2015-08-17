@@ -14,7 +14,7 @@ gradebookApp.controller(
           })
           .error(function(response) {
             $(obj.currentTarget).prop('disabled', false);
-            $scope.addAlert(response.errors, 'danger');
+            $scope.addAlert(response.error, 'danger');
           })
       };
 
