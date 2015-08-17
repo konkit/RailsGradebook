@@ -45,8 +45,6 @@ class Ability
     # Teacher can manage the Grades of the subjects he is involved
     can :manage, Grade, :subject => { :teacher => user }
 
-    can :get_students_grades, Student
-
     can :see_his_subjects, Subject, :teacher => user
 
     can :generate_csv, :all
