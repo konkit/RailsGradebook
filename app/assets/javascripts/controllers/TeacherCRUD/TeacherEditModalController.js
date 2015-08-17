@@ -1,30 +1,36 @@
-gradebookApp.controller('TeacherEditModalController', ['$scope', '$modalInstance', 'TeachersService', 'teacher', function ($scope, $modalInstance, TeachersService, teacher) {
-  $scope.teacher = teacher;
+gradebookApp.controller(
+  'TeacherEditModalController',
+  [
+    '$scope', '$modalInstance', 'TeachersService', 'teacher',
+    function ($scope, $modalInstance, TeachersService, teacher) {
+      $scope.teacher = teacher;
 
-  $scope.ok = function (obj) {
-    $(obj.currentTarget).prop('disabled', true);
+      $scope.ok = function (obj) {
+        $(obj.currentTarget).prop('disabled', true);
 
-    TeachersService.update($scope.teacher)
-      .success(function(response) {
-        $modalInstance.close();
-      })
-      .error(function(response) {
-        $(obj.currentTarget).prop('disabled', false);
-        $scope.addAlert(response.errors, 'danger');
-      })
-  };
+        TeachersService.update($scope.teacher)
+          .success(function(response) {
+            $modalInstance.close();
+          })
+          .error(function(response) {
+            $(obj.currentTarget).prop('disabled', false);
+            $scope.addAlert(response.errors, 'danger');
+          })
+      };
 
-  $scope.cancel = function () {
-    $modalInstance.dismiss('cancel');
-  };
+      $scope.cancel = function () {
+        $modalInstance.dismiss('cancel');
+      };
 
-  $scope.alerts = [];
+      $scope.alerts = [];
 
-  $scope.addAlert = function(msg, type) {
-    $scope.alerts.push({msg: msg, type: type});
-  };
+      $scope.addAlert = function(msg, type) {
+        $scope.alerts.push({msg: msg, type: type});
+      };
 
-  $scope.closeAlert = function(index) {
-    $scope.alerts.splice(index, 1);
-  };
-}]);
+      $scope.closeAlert = function(index) {
+        $scope.alerts.splice(index, 1);
+      };
+    }
+  ]
+);

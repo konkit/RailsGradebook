@@ -1,6 +1,7 @@
 gradebookApp.controller(
   'DivisionEditModalController',
-  ['$scope', '$modalInstance', 'DivisionsService', 'division', 'subjectsData', '$filter',
+  [
+    '$scope', '$modalInstance', 'DivisionsService', 'division', 'subjectsData', '$filter',
     function ($scope, $modalInstance, DivisionsService, division, subjectsData, $filter) {
       $scope.division = division;
       $scope.subjectsData = subjectsData;
@@ -50,4 +51,6 @@ gradebookApp.controller(
       $scope.closeAlert = function(index) {
         $scope.alerts.splice(index, 1);
       };
-}]);
+    }
+  ]
+);
