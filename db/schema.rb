@@ -13,6 +13,9 @@
 
 ActiveRecord::Schema.define(version: 20150813134458) do
 
+  # These are extensions that must be enabled in order to support this database
+  enable_extension "plpgsql"
+
   create_table "divisions", force: :cascade do |t|
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
@@ -32,8 +35,8 @@ ActiveRecord::Schema.define(version: 20150813134458) do
     t.integer  "gradevalue", default: 5, null: false
   end
 
-  add_index "grades", ["student_id"], name: "index_grades_on_student_id"
-  add_index "grades", ["subject_id"], name: "index_grades_on_subject_id"
+  add_index "grades", ["student_id"], name: "index_grades_on_student_id", using: :btree
+  add_index "grades", ["subject_id"], name: "index_grades_on_subject_id", using: :btree
 
   create_table "subjects", force: :cascade do |t|
     t.datetime "created_at", null: false
@@ -42,7 +45,7 @@ ActiveRecord::Schema.define(version: 20150813134458) do
     t.string   "name"
   end
 
-  add_index "subjects", ["teacher_id"], name: "index_subjects_on_teacher_id"
+  add_index "subjects", ["teacher_id"], name: "index_subjects_on_teacher_id", using: :btree
 
   create_table "users", force: :cascade do |t|
     t.string   "email",                  default: "", null: false
@@ -62,8 +65,8 @@ ActiveRecord::Schema.define(version: 20150813134458) do
     t.string   "name"
   end
 
-  add_index "users", ["division_id"], name: "index_users_on_division_id"
-  add_index "users", ["email"], name: "index_users_on_email", unique: true
-  add_index "users", ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
+  add_index "users", ["division_id"], name: "index_users_on_division_id", using: :btree
+  add_index "users", ["email"], name: "index_users_on_email", unique: true, using: :btree
+  add_index "users", ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true, using: :btree
 
 end
