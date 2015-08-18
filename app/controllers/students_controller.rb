@@ -4,7 +4,7 @@ class StudentsController < ApplicationController
   load_and_authorize_resource
 
   def get_students_grades
-    @student = current_user
+    @student = Student.includes(:grades => :subject).find(current_user.id)
     authorize! :get_students_grades, @student
   end
 
