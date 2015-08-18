@@ -45,17 +45,19 @@ gem 'angular-rails-templates'
 
 gem 'angular_rails_csrf'
 
-gem 'pry'
-
 # For heroku
 gem 'rails_12factor', group: :production
 
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
   gem 'byebug'
+  gem 'pry'
 
   gem 'rspec-rails'
   gem 'factory_girl_rails'
+  gem 'faker'
+  gem 'launchy'
+  gem 'guard-rspec'
 
   # Access an IRB console on exception pages or by using <%= console %> in views
   gem 'web-console', '~> 2.0'

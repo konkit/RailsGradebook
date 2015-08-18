@@ -4,4 +4,5 @@ class Subject < ActiveRecord::Base
   has_many :grades
 
   validates_presence_of :teacher
+  validates :name, presence: true, format: { with: /\A[A-Za-z]+\z/, message: "can have only letters"}
 end
