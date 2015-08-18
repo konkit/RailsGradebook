@@ -1,6 +1,7 @@
 class StudentsController < ApplicationController
   before_action :set_student, only: [:show, :edit, :update, :destroy]
   respond_to :json
+  load_and_authorize_resource
 
   def get_students_grades
     @student = current_user

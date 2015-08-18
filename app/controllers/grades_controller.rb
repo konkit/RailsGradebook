@@ -2,18 +2,18 @@ class GradesController < ApplicationController
   respond_to :json
   before_action :set_grade, only: [:update, :destroy]
 
+  load_and_authorize_resource
+
   # POST /grades
   # POST /grades.json
   def create
     @grade = Grade.new(grade_params)
-    authorize! :create, @grade
     handle_create(@grade)
   end
 
   # PATCH/PUT /grades/1
   # PATCH/PUT /grades/1.json
   def update
-    authorize! :update, @grade
     handle_update(@grade, grade_params)
   end
 

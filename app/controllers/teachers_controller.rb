@@ -1,5 +1,6 @@
 class TeachersController < ApplicationController
   before_action :set_teacher, only: [:show, :edit, :update, :destroy]
+  load_and_authorize_resource
 
   def subjects_and_divisions
     teacher = current_user
