@@ -9,10 +9,12 @@
         %li
           %a{"ng-click" => "logout()"} Sign out
 
-.container-fluid{"ng-controller" => "PrincipalNavigationController"}
+.container-fluid{"ng-controller" => "PrincipalDashboardController"}
   .row.row-offcanvas.row-offcanvas-left
     .col-sm-3.col-md-2.sidebar-offcanvas#sidebar{"role" => "navigation"}
       .nav.nav-sidebar
+        %li
+          %a{"ng-click" => "goToStats()"}    Statistics
         %li
           %a{"ng-click" => "goToStudentsCRUD()"} Students management
         %li

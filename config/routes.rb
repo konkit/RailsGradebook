@@ -9,7 +9,19 @@ Rails.application.routes.draw do
   # You can have the root of your site routed with "root"
   root 'welcome#index'
 
-  resources :subjects, :grades, :divisions, :defaults => { :format => :json }
+  resources :subjects, :defaults => { :format => :json }
+
+  resources :grades, :defaults => { :format => :json } do
+    collection do
+      get 'grades_per_subject'
+    end
+  end
+
+  resources :divisions, :defaults => { :format => :json } do
+    collection do
+      get 'get_student_count_in_divisions'
+    end
+  end
 
   resources :teachers, :defaults => { :format => :json } do
     collection do

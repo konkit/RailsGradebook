@@ -23,6 +23,10 @@ class GradesController < ApplicationController
     handle_destroy(@grade)
   end
 
+  def grades_per_subject
+    @grades_per_subject = Grade.includes(:subject).all.group(:subject).count
+  end
+
   private
     # Use callbacks to share common setup or constraints between actions.
     def set_grade

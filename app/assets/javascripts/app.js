@@ -3,7 +3,8 @@ gradebookApp = angular.module('gradebookApp', [
   'templates',
   'gradebookApp.controllers',
   'gradebookApp.services',
-  'ui.bootstrap'
+  'ui.bootstrap',
+  'chart.js'
 ])
 
 gradebookApp.config(
@@ -44,7 +45,7 @@ gradebookApp.config(
         .state('principalRole.principalDashboard', {
           url: '/principal_dashboard/',
           templateUrl: '/assets/principal_dashboard.html',
-          controller: 'PrincipalNavigationController'
+          controller: 'PrincipalDashboardController'
         })
         .state('principalRole.teachercrud', {
           url: '/teacher_crud/',

@@ -28,5 +28,9 @@ services.factory('DivisionsService', ['$http', function ($http) {
       return $http.delete( 'divisions/' + division.id + '.json')
     }
 
+    o.getStudentCounts = function() {
+      return $http.get( 'divisions/get_student_count_in_divisions' )
+    }
+
     return o;
 }]);

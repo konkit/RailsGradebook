@@ -3,4 +3,5 @@ asset 'bootstrap-sass-official'
 asset 'angular-ui-router'
 asset 'angular-resource'
 asset 'angular-bootstrap'
+asset 'angular-chart.js'
 # vim: ft=ruby

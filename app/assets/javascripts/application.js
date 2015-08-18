@@ -17,6 +17,8 @@
 //= require angular-bootstrap
 
 //= require angular-rails-templates
+//= require Chart.js/Chart
+//= require angular-chart.js/angular-chart
 
 //= require controllers/controllers
 //= require services/services
