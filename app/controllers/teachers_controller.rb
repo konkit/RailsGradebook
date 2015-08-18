@@ -8,12 +8,8 @@ class TeachersController < ApplicationController
   end
 
   def get_grades
-    render json: Grade.includes( :subject, :student => :division )
+    @grades = Grade.includes( :subject, :student => :division )
       .where( users: { division_id: params[:division_id]}, subjects: { id: params[:subject_id]} )
-      .group_by { |grade| grade.student }
-      .map { |student, grade|
-        { student: student, grades: grade }
-      }
   end
 
   #############
