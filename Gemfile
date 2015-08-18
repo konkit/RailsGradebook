@@ -59,6 +59,9 @@ group :development, :test do
   gem 'launchy'
   gem 'guard-rspec'
 
+  gem 'brakeman'
+  gem 'rails_best_practices'
+
   # Access an IRB console on exception pages or by using <%= console %> in views
   gem 'web-console', '~> 2.0'
 
