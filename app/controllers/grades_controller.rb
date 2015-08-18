@@ -7,36 +7,20 @@ class GradesController < ApplicationController
   def create
     @grade = Grade.new(grade_params)
     authorize! :create, @grade
-    if @grade.save
-      render json: {errors: []}, status: :created, location: @grade
-    else
-      render json: { errors: @grade.errors.full_messages }, status: :unprocessable_entity
-    end
-  rescue StandardError => e
-    render json: { errors: [e.message] }, status: :unprocessable_entity
+    handle_create(@grade)
   end
 
   # PATCH/PUT /grades/1
   # PATCH/PUT /grades/1.json
   def update
     authorize! :update, @grade
-    if @grade.update(grade_params)
-      render json: {errors: []}, status: :ok, location: @grade
-    else
-      render json: {errors: @grade.errors.full_messages}, status: :unprocessable_entity
-    end
-  rescue StandardError => e
-    render json: { errors: [e.message] }, status: :unprocessable_entity
+    handle_update(@grade, grade_params)
   end
 
   # DELETE /grades/1
   # DELETE /grades/1.json
   def destroy
-    authorize! :destroy, @grade
-    @grade.destroy
-    head :no_content
-  rescue StandardError => e
-    render json: { errors: [e.message] }, status: :unprocessable_entity
+    handle_destroy(@grade)
   end
 
   private

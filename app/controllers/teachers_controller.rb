@@ -27,35 +27,19 @@ class TeachersController < ApplicationController
   # POST /teachers.json
   def create
     @teacher = Teacher.new(teacher_params)
-
-    if @teacher.save
-      render json: { errors: []}, status: :created, location: @teacher
-    else
-      render json: { errors: @teacher.errors.full_messages}, status: :unprocessable_entity
-    end
-  rescue StandardError => e
-    render json: { errors: [e.message] }, status: :unprocessable_entity
+    handle_create(@teacher)
   end
 
   # PATCH/PUT /teachers/1
   # PATCH/PUT /teachers/1.json
   def update
-    if @teacher.update(teacher_params)
-      render json: {errors: []}, status: :ok, location: @teacher
-    else
-      render json: {errors: @teacher.errors.full_messages}, status: :unprocessable_entity
-    end
-  rescue StandardError => e
-    render json: { errors: [e.message] }, status: :unprocessable_entity
+    handle_update(@teacher, teacher_params)
   end
 
   # DELETE /teachers/1
   # DELETE /teachers/1.json
   def destroy
-    @teacher.destroy
-    head :no_content
-  rescue StandardError => e
-    render json: { errors: [e.message] }, status: :unprocessable_entity
+    handle_destroy(@teacher)
   end
 
   private

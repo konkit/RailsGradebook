@@ -12,14 +12,7 @@ class DivisionsController < ApplicationController
   # POST /divisions.json
   def create
     @division = Division.new(division_params)
-
-    if @division.save
-      render json: {errors: []}, status: :created, location: @division
-    else
-      render json: {errors: @division.errors.full_messages}, status: :unprocessable_entity
-    end
-  rescue StandardError => e
-    render json: { errors: [e.message] }, status: :unprocessable_entity
+    handle_create(@division)
   end
 
   # PATCH/PUT /divisions/1
@@ -27,22 +20,13 @@ class DivisionsController < ApplicationController
   def update
     @division.subjects = get_subjects_ids
     @division.save
-    if @division.update(division_params)
-      render json: {errors: []}, status: :ok, location: @division
-    else
-      render json: {errors: @division.errors}, status: :unprocessable_entity
-    end
-  rescue StandardError => e
-    render json: { errors: [e.message] }, status: :unprocessable_entity
+    handle_update(@division, division_params)
   end
 
   # DELETE /divisions/1
   # DELETE /divisions/1.json
   def destroy
-    @division.destroy
-    head :no_content
-  rescue StandardError => e
-    render json: { errors: [e.message] }, status: :unprocessable_entity
+    handle_destroy(@division)
   end
 
   private

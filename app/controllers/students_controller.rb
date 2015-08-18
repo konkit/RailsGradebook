@@ -32,35 +32,19 @@ class StudentsController < ApplicationController
   # POST /students.json
   def create
     @student = Student.new(student_params)
-
-    if @student.save
-      render json: {errors: []}, status: :created, location: @student
-    else
-      render json: { errors: @student.errors.full_messages }, status: :unprocessable_entity
-    end
-  rescue StandardError => e
-    render json: { errors: [e.message] }, status: :unprocessable_entity
+    handle_create(@student)
   end
 
   # PATCH/PUT /students/1
   # PATCH/PUT /students/1.json
   def update
-    if @student.update(student_params)
-      render json: { errors: [] }, status: :ok, location: @student
-    else
-      render json: { errors: @student.errors.full_messages }, status: :unprocessable_entity
-    end
-  rescue StandardError => e
-    render json: { errors: [e.message] }, status: :unprocessable_entity
+    handle_update(@student, student_params)
   end
 
   # DELETE /students/1
   # DELETE /students/1.json
   def destroy
-    @student.destroy
-    head :no_content
-  rescue StandardError => e
-    render json: { errors: [e.message] }, status: :unprocessable_entity
+    handle_destroy(@student)
   end
 
   private

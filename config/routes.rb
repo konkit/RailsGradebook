@@ -1,6 +1,6 @@
 Rails.application.routes.draw do
   get 'welcome/index'
-  get 'welcome/get_current_user'
+  get 'welcome/get_current_user', :defaults => { :format => :json }
 
   devise_for :users, :controllers => {sessions: 'sessions'}
   # The priority is based upon order of creation: first created -> highest priority.
@@ -9,16 +9,16 @@ Rails.application.routes.draw do
   # You can have the root of your site routed with "root"
   root 'welcome#index'
 
-  resources :subjects, :grades, :divisions
+  resources :subjects, :grades, :divisions, :defaults => { :format => :json }
 
-  resources :teachers do
+  resources :teachers, :defaults => { :format => :json } do
     collection do
       get 'subjects_and_divisions'
       get 'get_grades'
     end
   end
 
-  resources :students do
+  resources :students, :defaults => { :format => :json } do
     collection do
       get 'get_students_grades'
     end
