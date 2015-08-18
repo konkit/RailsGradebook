@@ -14,12 +14,12 @@ class DivisionsController < ApplicationController
     @division = Division.new(division_params)
 
     if @division.save
-      render json: {errors: ""}, status: :created, location: @division
+      render json: {errors: []}, status: :created, location: @division
     else
-      render json: {errors: @division.errors}, status: :unprocessable_entity
+      render json: {errors: @division.errors.full_messages}, status: :unprocessable_entity
     end
   rescue StandardError => e
-    render json: { errors: e.message }, status: :unprocessable_entity
+    render json: { errors: [e.message] }, status: :unprocessable_entity
   end
 
   # PATCH/PUT /divisions/1
@@ -28,12 +28,12 @@ class DivisionsController < ApplicationController
     @division.subjects = get_subjects_ids
     @division.save
     if @division.update(division_params)
-      render json: {errors: ""}, status: :ok, location: @division
+      render json: {errors: []}, status: :ok, location: @division
     else
       render json: {errors: @division.errors}, status: :unprocessable_entity
     end
   rescue StandardError => e
-    render json: { errors: e.message }, status: :unprocessable_entity
+    render json: { errors: [e.message] }, status: :unprocessable_entity
   end
 
   # DELETE /divisions/1
@@ -42,7 +42,7 @@ class DivisionsController < ApplicationController
     @division.destroy
     head :no_content
   rescue StandardError => e
-    render json: { errors: e.message }, status: :unprocessable_entity
+    render json: { errors: [e.message] }, status: :unprocessable_entity
   end
 
   private

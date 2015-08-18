@@ -13,24 +13,24 @@ class SubjectsController < ApplicationController
     @subject = Subject.new(subject_params)
 
     if @subject.save
-      render json: {errors: ""}, status: :created, location: @subject
+      render json: {errors: []}, status: :created, location: @subject
     else
-      render json: {errors: @subject.errors}, status: :unprocessable_entity
+      render json: {errors: @subject.errors.full_messages}, status: :unprocessable_entity
     end
   rescue StandardError => e
-    render json: { errors: e.message }, status: :unprocessable_entity
+    render json: { errors: [e.message] }, status: :unprocessable_entity
   end
 
   # PATCH/PUT /subjects/1
   # PATCH/PUT /subjects/1.json
   def update
     if @subject.update(subject_params)
-      render json: {errors: ""}, status: :ok, location: @subject
+      render json: {errors: []}, status: :ok, location: @subject
     else
-      render json: {errors: @subject.errors}, status: :unprocessable_entity
+      render json: {errors: @subject.errors.full_messages}, status: :unprocessable_entity
     end
   rescue StandardError => e
-    render json: { errors: e.message }, status: :unprocessable_entity
+    render json: { errors: [e.message] }, status: :unprocessable_entity
   end
 
   # DELETE /subjects/1
@@ -39,7 +39,7 @@ class SubjectsController < ApplicationController
     @subject.destroy
     head :no_content
   rescue StandardError => e
-    render json: { errors: e.message }, status: :unprocessable_entity
+    render json: { errors: [e.message] }, status: :unprocessable_entity
   end
 
   private

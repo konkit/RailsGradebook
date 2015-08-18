@@ -14,7 +14,10 @@ gradebookApp.controller(
           })
           .error(function(response) {
             $(obj.currentTarget).prop('disabled', false);
-            $scope.addAlert(response.errors, 'danger');
+
+            angular.forEach(response.errors, function(value, key) {
+              $scope.addAlert(value, 'danger');
+            });
           })
       };
 

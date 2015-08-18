@@ -18,7 +18,10 @@ function ($scope, $modalInstance, subject, student, grade, GradesService) {
       })
       .error(function(response) {
         $(obj.currentTarget).prop('disabled', false);
-        $scope.addAlert(response.errors, 'danger');
+
+        angular.forEach(response.errors, function(value, key) {
+          $scope.addAlert(value, 'danger');
+        });
       })
   };
 
@@ -31,7 +34,9 @@ function ($scope, $modalInstance, subject, student, grade, GradesService) {
         $modalInstance.close();
       })
       .error(function(response) {
-        $scope.addAlert(response.errors, 'danger');
+        angular.forEach(response.errors, function(value, key) {
+          $scope.addAlert(value, 'danger');
+        });
       })
   };
 

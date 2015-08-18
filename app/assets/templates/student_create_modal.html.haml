@@ -4,20 +4,26 @@
 .modal-body
   %alert{:close => "closeAlert($index)", "ng-repeat" => "alert in alerts", :type => "{{alert.type}}"} {{alert.msg}}
 
-  %label Name
-  %input.form-control{"ng-model" => "student.name"}
+  %form{"name" => "form"}
+    .form-group
+      %label.control-label Name
+      %input.form-control{"name" => "name", "ng-model" => "student.name"}
 
-  %label Email
-  %input.form-control{"ng-model" => "student.email"}
+    .form-group
+      %label.control-label Email
+      %input.form-control.error{"name" => "email", "ng-model" => "student.email"}
 
-  %label Password
-  %input.form-control{"ng-model" => "student.password", "type" => "password"}
+    .form-group
+      %label Password
+      %input.form-control{"name" => "password", "ng-model" => "student.password", "type" => "password"}
 
-  %label Password confirmation
-  %input.form-control{"ng-model" => "student.password_confirmation", "type" => "password"}
+    .form-group
+      %label Password confirmation
+      %input.form-control{"name" => "password_confirmation", "ng-model" => "student.password_confirmation", "type" => "password"}
 
-  %label Division
-  %select.form-control{"ng-model" => "student.division_id", "ng-options" => "division.id as division.name for division in divisionsData"}
+    .form-group
+      %label Division
+      %select.form-control{"name" => "division", "ng-model" => "student.division_id", "ng-options" => "division.id as division.name for division in divisionsData"}
 
 .modal-footer
   %button.btn.btn-primary{:type => "button", "ng-click" => "ok($event)"} Save
