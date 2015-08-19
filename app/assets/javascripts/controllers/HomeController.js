@@ -27,9 +27,10 @@ gradebookApp.controller(
             $state.go('app');
           }
 
-          $scope.moveToDashboard();
+          typeof callback === 'function' && callback();
         });
       };
+      refreshCurrentUserData();
 
       $scope.openLoginModal = function() {
         var modalInstance = $modal.open( {
