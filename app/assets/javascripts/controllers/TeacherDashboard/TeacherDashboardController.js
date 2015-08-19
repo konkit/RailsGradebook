@@ -14,6 +14,10 @@ gradebookApp.controller('TeacherDashboardController', ['$scope', 'GradesService'
       }
 
       $scope.getGrades = function() {
+        if( $scope.selectedDivision == null ) {
+          $scope.selectedDivision = $scope.selectedSubject.divisions[0];
+        }
+
         if( $scope.selectedSubject == null || $scope.selectedDivision == null ) {
           return;
         }

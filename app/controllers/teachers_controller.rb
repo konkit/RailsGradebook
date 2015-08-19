@@ -8,8 +8,12 @@ class TeachersController < ApplicationController
   end
 
   def get_grades
-    @grades = Grade.includes( :subject, :student => :division )
-      .where( users: { division_id: params[:division_id]}, subjects: { id: params[:subject_id]} )
+    @students = Student.includes(:grades).where(division_id: params[:division_id]).map do |student|
+      {
+        student: student,
+        grades: student.grades.where(subject_id: params[:subject_id])
+      }
+    end
   end
 
   #############
