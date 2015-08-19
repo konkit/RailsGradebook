@@ -45,8 +45,8 @@ class Ability
     # Teacher can manage the Grades of the subjects he is involved
     can :manage, Grade, :subject => { :teacher => user }
 
-    can :subjects_and_divisions, Teacher, :teacher => user
-    can :get_grades, Teacher, :teacher => user
+    can :subjects_and_divisions, Teacher, :id => user.id
+    can :get_grades, Teacher, :id => user.id
 
     can :generate_csv, :all
   end
@@ -61,21 +61,12 @@ class Ability
 
 
   def init_principal_abilities(user)
-    # Principal can see everything
-    can :read, :all
-
     # Principal can manage Teachers and Students
     can :manage, [Teacher, Student, Division, Subject, Grade]
 
     can :principal_dashboard, :all
 
-    # Principal can change password of all teachers and students
-    can :change_password, [Teacher, Student]
-
     # Principal can change his password
     can :change_password, Principal, :id => user.id
-
-    # Can access stats
-    can :access_stats, :all
   end
 end
