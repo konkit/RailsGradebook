@@ -15,5 +15,9 @@ services.factory('LoginService', ['$http', function ($http) {
       return $http.delete( 'users/sign_out.json', {})
     }
 
+    o.changePassword = function(user_data) {
+      return $http.put( 'users.json/', { user: user_data })
+    }
+
     return o;
 }]);

@@ -45,6 +45,22 @@ gradebookApp.controller(
         });
       }
 
+      $scope.openChangePasswordModal = function() {
+        var modalInstance = $modal.open( {
+          animation: true,
+          templateUrl: '/assets/change_password_modal.html',
+          controller: 'ChangePasswordModalController',
+          size: 'sm',
+          resolve: {
+            user_data: function() { return $scope.current_user; }
+          }
+        });
+
+        modalInstance.result.then(function() {
+          refreshCurrentUserData($scope.moveToDashboard);
+        });
+      }
+
       $scope.logout = function() {
         LoginService.logout().success(function() {
           refreshCurrentUserData();

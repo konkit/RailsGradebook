@@ -3,12 +3,12 @@
     .navbar-header
       .navbar-brand Gradebook App
     %div
-      %ul.nav.navbar-nav
-        %li
-          %a{"ng-click" => ""} Grades edit
       %ul.nav.navbar-nav.navbar-right
-        %li
-          %a Welcome {{current_user.name}}
+        %li{"dropdown" => ""}
+          %a.cursor-pointer{"dropdown-toggle" => ""} Welcome {{current_user.name}}
+          %ul.dropdown-menu{"role" => "menu"}
+            %li{"role" => "menuitem"}
+              %a{"ng-click" => "openChangePasswordModal()"} Change password
         %li
           %a{"ng-click" => "logout()"} Sign out
 
