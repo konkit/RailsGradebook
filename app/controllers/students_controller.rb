@@ -1,5 +1,7 @@
 class StudentsController < ApplicationController
-  before_action :set_student, only: [:show, :edit, :update, :destroy]
+  include HandlingResourceJsonActions
+
+  before_action :set_student, only: [:update, :destroy]
   respond_to :json
   load_and_authorize_resource
 

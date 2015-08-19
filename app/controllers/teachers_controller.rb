@@ -1,5 +1,7 @@
 class TeachersController < ApplicationController
-  before_action :set_teacher, only: [:show, :edit, :update, :destroy]
+  include HandlingResourceJsonActions
+
+  before_action :set_teacher, only: [:update, :destroy]
   load_and_authorize_resource
 
   def subjects_and_divisions

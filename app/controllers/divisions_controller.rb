@@ -1,4 +1,6 @@
 class DivisionsController < ApplicationController
+  include  HandlingResourceJsonActions
+
   before_action :set_division, only: [:update, :destroy]
   load_and_authorize_resource
 
