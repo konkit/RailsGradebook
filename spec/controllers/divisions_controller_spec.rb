@@ -34,18 +34,13 @@ RSpec.describe DivisionsController, type: :controller do
     { name: '' }
   }
 
-  # This should return the minimal set of values that should be in the session
-  # in order to pass any filters (e.g. authentication) defined in
-  # DivisionsController. Be sure to keep this updated too.
-  let(:valid_session) { {} }
-
   context "as principal" do
     login_principal
 
     describe "GET #index" do
       it "assigns all divisions as @divisions" do
         expected = Division.create!(valid_attributes)
-        get :index, {format: :json}, valid_session
+        get :index, {format: :json}
         expect(assigns(:divisions)).to match_array(expected)
       end
     end
@@ -54,30 +49,30 @@ RSpec.describe DivisionsController, type: :controller do
       context "with valid params" do
         it "creates a new Division" do
           expect {
-            post :create, {:division => valid_attributes}, valid_session
+            post :create, {:division => valid_attributes}
           }.to change(Division, :count).by(1)
         end
 
         it "assigns a newly created division as @division" do
-          post :create, {:division => valid_attributes}, valid_session
+          post :create, {:division => valid_attributes}
           expect(assigns(:division)).to be_a(Division)
           expect(assigns(:division)).to be_persisted
         end
 
         it "returns status 201 created" do
-          post :create, {:division => valid_attributes}, valid_session
+          post :create, {:division => valid_attributes}
           expect(response).to have_http_status(:created)
         end
       end
 
       context "with invalid params" do
         it "assigns a newly created but unsaved division as @division" do
-          post :create, {:division => invalid_attributes}, valid_session
+          post :create, {:division => invalid_attributes}
           expect(assigns(:division)).to be_a_new(Division)
         end
 
         it "returns status unprocessable entity" do
-          post :create, {:division => invalid_attributes}, valid_session
+          post :create, {:division => invalid_attributes}
           expect(response).to have_http_status(:unprocessable_entity)
         end
       end
@@ -91,20 +86,20 @@ RSpec.describe DivisionsController, type: :controller do
 
         it "updates the requested division" do
           division = Division.create! valid_attributes
-          put :update, {:id => division.to_param, :division => new_attributes}, valid_session
+          put :update, {:id => division.to_param, :division => new_attributes}
           division.reload
           expect(division.name).to eq('II B')
         end
 
         it "assigns the requested division as @division" do
           division = Division.create! valid_attributes
-          put :update, {:id => division.to_param, :division => valid_attributes}, valid_session
+          put :update, {:id => division.to_param, :division => valid_attributes}
           expect(assigns(:division)).to eq(division)
         end
 
         it "returns status 200 OK" do
           division = Division.create! valid_attributes
-          put :update, {:id => division.to_param, :division => valid_attributes}, valid_session
+          put :update, {:id => division.to_param, :division => valid_attributes}
           expect(response).to have_http_status(:ok)
         end
       end
@@ -112,13 +107,13 @@ RSpec.describe DivisionsController, type: :controller do
       context "with invalid params" do
         it "assigns the division as @division" do
           division = Division.create! valid_attributes
-          put :update, {:id => division.to_param, :division => invalid_attributes}, valid_session
+          put :update, {:id => division.to_param, :division => invalid_attributes}
           expect(assigns(:division)).to eq(division)
         end
 
         it "returns status 422 unprocessable entity" do
           division = Division.create! valid_attributes
-          put :update, {:id => division.to_param, :division => invalid_attributes}, valid_session
+          put :update, {:id => division.to_param, :division => invalid_attributes}
           expect(response).to have_http_status(:unprocessable_entity)
         end
       end
@@ -128,13 +123,13 @@ RSpec.describe DivisionsController, type: :controller do
       it "destroys the requested division" do
         division = Division.create! valid_attributes
         expect {
-          delete :destroy, {:id => division.to_param}, valid_session
+          delete :destroy, {:id => division.to_param}
         }.to change(Division, :count).by(-1)
       end
 
       it "returns status 204 no content" do
         division = Division.create! valid_attributes
-        delete :destroy, {:id => division.to_param}, valid_session
+        delete :destroy, {:id => division.to_param}
         expect(response).to have_http_status(:no_content)
       end
     end
@@ -145,13 +140,13 @@ RSpec.describe DivisionsController, type: :controller do
 
     describe "GET #index" do
       it "raise CanCan::AccessDenied error" do
-        expect{ get :index, {format: :json}, valid_session }.to raise_error(CanCan::AccessDenied)
+        expect{ get :index, {format: :json}  }.to raise_error(CanCan::AccessDenied)
       end
     end
 
     describe "POST #create" do
       it "raise CanCan::AccessDenied error" do
-        expect{ post :create, {:division => invalid_attributes}, valid_session }.to raise_error(CanCan::AccessDenied)
+        expect{ post :create, {:division => invalid_attributes}  }.to raise_error(CanCan::AccessDenied)
       end
     end
 
@@ -159,7 +154,7 @@ RSpec.describe DivisionsController, type: :controller do
       it "raise CanCan::AccessDenied error" do
         division = Division.create! valid_attributes
         expect {
-          put :update, {:id => Division.create!(valid_attributes).to_param, :division => invalid_attributes}, valid_session
+          put :update, {:id => Division.create!(valid_attributes).to_param, :division => invalid_attributes}
         }.to raise_error(CanCan::AccessDenied)
       end
     end
@@ -168,7 +163,7 @@ RSpec.describe DivisionsController, type: :controller do
       it "raise CanCan::AccessDenied error" do
         division = Division.create! valid_attributes
         expect {
-          delete :destroy, {:id => division.to_param}, valid_session
+          delete :destroy, {:id => division.to_param}
         }.to raise_error(CanCan::AccessDenied)
       end
     end
@@ -179,13 +174,13 @@ RSpec.describe DivisionsController, type: :controller do
 
     describe "GET #index" do
       it "raise CanCan::AccessDenied error" do
-        expect{ get :index, {format: :json}, valid_session }.to raise_error(CanCan::AccessDenied)
+        expect{ get :index, {format: :json}  }.to raise_error(CanCan::AccessDenied)
       end
     end
 
     describe "POST #create" do
       it "raise CanCan::AccessDenied error" do
-        expect{ post :create, {:division => invalid_attributes}, valid_session }.to raise_error(CanCan::AccessDenied)
+        expect{ post :create, {:division => invalid_attributes}  }.to raise_error(CanCan::AccessDenied)
       end
     end
 
@@ -193,7 +188,7 @@ RSpec.describe DivisionsController, type: :controller do
       it "raise CanCan::AccessDenied error" do
         division = Division.create! valid_attributes
         expect {
-          put :update, {:id => Division.create!(valid_attributes).to_param, :division => invalid_attributes}, valid_session
+          put :update, {:id => Division.create!(valid_attributes).to_param, :division => invalid_attributes}
         }.to raise_error(CanCan::AccessDenied)
       end
     end
@@ -202,7 +197,7 @@ RSpec.describe DivisionsController, type: :controller do
       it "raise CanCan::AccessDenied error" do
         division = Division.create! valid_attributes
         expect {
-          delete :destroy, {:id => division.to_param}, valid_session
+          delete :destroy, {:id => division.to_param}
         }.to raise_error(CanCan::AccessDenied)
       end
     end
