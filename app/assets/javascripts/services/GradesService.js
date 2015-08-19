@@ -37,9 +37,5 @@ services.factory('GradesService', ['$http', function ($http) {
       return $http.delete( 'grades/' + grade.id )
     }
 
-    o.grades_per_subject = function() {
-      return $http.get( 'grades/grades_per_subject' )
-    }
-
     return o;
 }]);

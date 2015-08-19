@@ -67,6 +67,8 @@ class Ability
     # Principal can manage Teachers and Students
     can :manage, [Teacher, Student, Division, Subject, Grade]
 
+    can :principal_dashboard, :all
+
     # Principal can change password of all teachers and students
     can :change_password, [Teacher, Student]
 

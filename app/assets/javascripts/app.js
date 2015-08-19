@@ -66,6 +66,11 @@ gradebookApp.config(
           url: '/subject_crud/',
           templateUrl: '/assets/subject_crud.html',
           controller: 'SubjectCRUDController'
+        })
+        .state('principalRole.grades', {
+          url: '/principal_grades/',
+          templateUrl: '/assets/principal_grades.html',
+          controller: 'PrincipalGradesController'
         });
     }
   ]

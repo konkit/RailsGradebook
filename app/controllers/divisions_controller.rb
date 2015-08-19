@@ -29,10 +29,6 @@ class DivisionsController < ApplicationController
     handle_destroy(@division)
   end
 
-  def get_student_count_in_divisions
-    @divisions = Division.includes(:students).all
-  end
-
   private
     # Use callbacks to share common setup or constraints between actions.
     def set_division

@@ -30,7 +30,6 @@ gradebookApp.controller(
           $scope.moveToDashboard();
         });
       };
-      refreshCurrentUserData($scope.moveToDashboard);
 
       $scope.openLoginModal = function() {
         var modalInstance = $modal.open( {
@@ -44,7 +43,7 @@ gradebookApp.controller(
           refreshCurrentUserData($scope.moveToDashboard);
         });
       }
-      
+
       $scope.logout = function() {
         LoginService.logout().success(function() {
           refreshCurrentUserData();

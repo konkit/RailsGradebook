@@ -10,18 +10,8 @@ Rails.application.routes.draw do
   root 'welcome#index'
 
   resources :subjects, :defaults => { :format => :json }
-
-  resources :grades, :defaults => { :format => :json } do
-    collection do
-      get 'grades_per_subject'
-    end
-  end
-
-  resources :divisions, :defaults => { :format => :json } do
-    collection do
-      get 'get_student_count_in_divisions'
-    end
-  end
+  resources :grades, :defaults => { :format => :json }
+  resources :divisions, :defaults => { :format => :json }
 
   resources :teachers, :defaults => { :format => :json } do
     collection do
@@ -35,6 +25,11 @@ Rails.application.routes.draw do
       get 'get_students_grades'
     end
   end
+
+  get 'principals/subjects_and_divisions', :format => :json
+  get 'principals/get_grades', :format => :json
+  get 'principals/grades_per_subject', :format => :json
+  get 'principals/get_student_count_in_divisions', :format => :json
 
   # Example of regular route:
   #   get 'products/:id' => 'catalog#view'

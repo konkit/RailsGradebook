@@ -1,0 +1,27 @@
+.panel.col-md-10.col-md-offset-1
+  .panel-heading
+    %h1 Grades
+  .panel-body
+    .row
+      .col-md-6
+        %label Select subject
+        %select.form-control{"ng-options" => "item.name for item in subjects_and_divisions", "ng-model" => "selectedSubject", "ng-change" => "getGrades()"}
+      .col-md-6
+        %label Select division
+        %select.form-control{"ng-options" => "item.name for item in selectedSubject.divisions", "ng-model" => "selectedDivision", "ng-change" => "getGrades()"}
+
+    %hr
+
+    %table.table
+      %thead
+        %tr
+          %th Student
+          %th Grades
+      %tbody
+        %tr{"ng-repeat" => "gradeData in gradesData"}
+          %td.col-md-4
+            {{gradeData.student.name}}
+          %td.col-md-8
+            .btn-group{:role => "group"}
+              .btn.btn-default.disabled{:type => "button", "ng-repeat" => "grade in gradeData.grades track by $index"}
+                {{grade.gradevalue}}
