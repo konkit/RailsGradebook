@@ -4,7 +4,8 @@ gradebookApp = angular.module('gradebookApp', [
   'gradebookApp.controllers',
   'gradebookApp.services',
   'ui.bootstrap',
-  'chart.js'
+  'chart.js',
+  'ngAnimate'
 ])
 
 gradebookApp.config(

@@ -20,6 +20,8 @@
 //= require Chart.js/Chart
 //= require angular-chart.js/angular-chart
 
+//= require angular-animate
+
 //= require controllers/controllers
 //= require services/services
 

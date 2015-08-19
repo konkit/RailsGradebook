@@ -26,3 +26,11 @@
 .cursor-pointer {
     cursor: pointer;
 }
+
+ui-view.ng-enter  {
+  transition: 1s;
+  opacity: 0;
+}
+ui-view.ng-enter-active {
+  opacity: 1;
+}
