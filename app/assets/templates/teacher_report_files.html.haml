@@ -9,6 +9,6 @@
     .row
       .col-md-12
         %p{"ng-repeat" => "file in reportFiles"}
-          %a{"ng-show" => "file.status == 'ready'", "href" => "{{file.path}}"}
+          %a{"ng-show" => "file.status == 'ready'", "href" => "reports/view_report/{{file.filename}}.csv"}
             {{file.filename}}
           %span.grayed_out{"ng-show" => "file.status == 'in_progress'"} [PENDING] {{file.filename}}
