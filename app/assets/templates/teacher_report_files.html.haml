@@ -11,3 +11,4 @@
         %p{"ng-repeat" => "file in reportFiles"}
           %a{"href" => "{{file.path}}"}
             {{file.filename}}
+            %span{"ng-show" => "file.status == 'in_progress'"} IN PROGRESS

@@ -9,23 +9,12 @@ class ReportsController < ApplicationController
   def generate_report
     @grades = Grade.all
 
-    sleep(3.0);
-
     filename = "grades#{Time.now.to_f}".gsub('.', '_') + ".csv"
     path = "reports/#{filename}"
-    reportModel = Report.create!(path: path, filename: filename, status: :in_progress )
+    report_model = Report.create!(path: path, filename: filename, status: :in_progress )
 
-    CSV.open( "#{Rails.root}/public/" + path, "w" ) do |csv|
-      csv << ['id', 'gradevalue', 'subjectname', 'createddate']
-      Grade.all.each do |grade|
-        csv << [grade.id, grade.gradevalue, grade.subject.name, grade.created_at.to_s]
-      end
-    end
+    GenerateGradesCsvJob.perform_later( report_model.id )
 
-    reportModel.status = :ready
-    reportModel.save!
-
-    render text: path
+    render json: report_model
   end
-
 end
