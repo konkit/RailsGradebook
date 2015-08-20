@@ -20,7 +20,7 @@ RSpec.describe GenerateGradesCsvJob, type: :job do
     end
 
     it "should call create_csv_file with path as parameter" do
-      expect(job).to receive(:create_csv_file).with(report.path)
+      expect(job).to receive(:create_csv_file).with(report)
       job.perform(report.id)
     end
 
@@ -34,9 +34,7 @@ RSpec.describe GenerateGradesCsvJob, type: :job do
       allow(Report).to receive(:find).with(report.id).and_return(report)
       expect(report).to receive(:save!)
       job.perform(report.id)
-
       expect(report.status).to eq("ready")
-
     end
   end
 end
