@@ -1,7 +1,7 @@
 FactoryGirl.define do
   factory :report do
-    path "MyString"
-status "MyString"
+    path "PathString"
+    status :ready
   end
 
 end
