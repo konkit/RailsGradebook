@@ -31,6 +31,9 @@ Rails.application.routes.draw do
   get 'principals/grades_per_subject', :format => :json
   get 'principals/get_student_count_in_divisions', :format => :json
 
+  get 'reports/get_reports'
+  get 'reports/generate_report'
+
   # Example of regular route:
   #   get 'products/:id' => 'catalog#view'
 

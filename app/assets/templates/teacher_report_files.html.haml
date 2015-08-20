@@ -4,9 +4,10 @@
   .panel-body
     .row
       .col-md-12
-        %button.btn.btn-primary Generate new report
+        %button.btn.btn-primary{"ng-click" => "generateNewReport()"} Generate new report
     %hr
     .row
       .col-md-12
-        %p asdf
-        %p asdf 2
+        %p{"ng-repeat" => "file in reportFiles"}
+          %a{"href" => "{{file.path}}"}
+            {{file.filename}}
