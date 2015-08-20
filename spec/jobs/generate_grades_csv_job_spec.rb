@@ -15,12 +15,12 @@ RSpec.describe GenerateGradesCsvJob, type: :job do
 
   describe "peform" do
     before(:each) do
-      allow(job).to receive(:create_csv_file).and_return(true)
+      allow(job).to receive(:create_csv).and_return(true)
       allow(job).to receive(:perform).and_call_original
     end
 
-    it "should call create_csv_file with path as parameter" do
-      expect(job).to receive(:create_csv_file).with(report)
+    it "should call create_csv with path as parameter" do
+      expect(job).to receive(:create_csv).with(report)
       job.perform(report.id)
     end
 
