@@ -43,6 +43,11 @@ gradebookApp.config(
           templateUrl: '/assets/teacher_dashboard.html',
           controller: 'TeacherDashboardController'
         })
+        .state('teacherRole.teacherReportFiles', {
+          url: '/teacher_reports/',
+          templateUrl: '/assets/teacher_report_files.html',
+          controller: 'TeacherReportFilesController'
+        })
         .state('principalRole.principalDashboard', {
           url: '/principal_dashboard/',
           templateUrl: '/assets/principal_dashboard.html',

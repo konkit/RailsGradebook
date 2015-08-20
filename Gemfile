@@ -45,6 +45,8 @@ gem 'angular-rails-templates'
 
 gem 'angular_rails_csrf'
 
+gem 'sidekiq'
+
 # For heroku
 gem 'rails_12factor', group: :production
 

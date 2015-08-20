@@ -12,4 +12,14 @@
         %li
           %a{"ng-click" => "logout()"} Sign out
 
-%ui-view
+.container-fluid{"ng-controller" => "TeacherNavigationController"}
+  .row.row-offcanvas.row-offcanvas-left
+    .col-sm-3.col-md-2.sidebar-offcanvas#sidebar{"role" => "navigation"}
+      .nav.nav-sidebar
+        %li
+          %a{"ng-click" => "goToGrades()"} Grades overview
+        %li
+          %a{"ng-click" => "goToReportFiles()"} Report files
+
+    .col-sm-9.col-md-10.main
+      %ui-view
