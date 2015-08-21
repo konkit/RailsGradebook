@@ -1,6 +1,6 @@
 FactoryGirl.define do
   factory :subject do
-    teacher
+    teacher { FactoryGirl.build(:teacher) }
     name 'Maths'
   end
 
