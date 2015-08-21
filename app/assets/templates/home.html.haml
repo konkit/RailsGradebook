@@ -1,33 +1,33 @@
-%nav.navbar.navbar-default.navbar-fixed-top
-  .container-fluid
-    .navbar-header
-      .navbar-brand Gradebook App
-    %div
-      %ul.nav.navbar-nav.navbar-right
-        %li
-          %a{"ng-click" => "openLoginModal()"} Sign in
+%link{"rel" => "stylesheet", "property" => "stylesheet", "href" => "assets/home.scss"}
 
-.jumbotron
-  .container
-    %h1 Gradebook Application
-    %p Developed with Ruby on Rails and Angular.js.
-    %button.btn.btn-primary{"ng-click" => "openLoginModal()"} Sign in
+%header.header-image
+  .headline
+    .container
+      %h1 Gradebook
+      %h2 Keep track of your grades
+      %h3.col-md-4.col-md-offset-4
+        %button.btn.btn-home-sign-in.btn-block{"ng-click" => "openLoginModal()"} Sign in
+
 .container
-  .row
-    .col-md-4
-      %h3 Backend in Ruby on rails
-      %p
-        Donec id elit non mi porta gravida at eget metus. Fusce dapibus, tellus ac cursus commodo, tortor mauris condimentum nibh, ut fermentum massa justo sit amet risus. Etiam porta sem malesuada magna mollis euismod. Donec sed odio dui.
-      %a.btn.btn-default{"href" => "http://rubyonrails.org/"} Go to Ruby on Rails webpage
-    .col-md-4
-      %h3 Frontend in Angular.js
-      %p
-        Donec id elit non mi porta gravida at eget metus. Fusce dapibus, tellus ac cursus commodo, tortor mauris condimentum nibh, ut fermentum massa justo sit amet risus. Etiam porta sem malesuada magna mollis euismod. Donec sed odio dui.
-      %a.btn.btn-default{"href" => "https://angularjs.org/"} Go to Angular.js webpage
-    .col-md-4
-      %h3 Hosted on Heroku
-      %p
-        Donec id elit non mi porta gravida at eget metus. Fusce dapibus, tellus ac cursus commodo, tortor mauris condimentum nibh, ut fermentum massa justo sit amet risus. Etiam porta sem malesuada magna mollis euismod. Donec sed odio dui.
-      %a.btn.btn-default{"href" => "https://www.heroku.com/"} Go to Heroku webpage
+  %hr.featurette-divider
+  #about.featurette
+    %img.featurette-image.img-circle.img-responsive.pull-right{:src => "assets/laptop1-500.png"}/
+    %h2.featurette-heading
+      Switch from paper
+      %span.text-muted to web application
+    %p.lead Donec ullamcorper nulla non metus auctor fringilla. Vestibulum id ligula porta felis euismod semper. Praesent commodo cursus magna, vel scelerisque nisl consectetur. Fusce dapibus, tellus ac cursus commodo.
 
+  %hr.featurette-divider
+  #services.featurette
+    %img.featurette-image.img-circle.img-responsive.pull-left{:src => "assets/laptop2-500.png"}/
+    %h2.featurette-heading
+      Save time
+      %span.text-muted AND money.
+    %p.lead Donec ullamcorper nulla non metus auctor fringilla. Vestibulum id ligula porta felis euismod semper. Praesent commodo cursus magna, vel scelerisque nisl consectetur. Fusce dapibus, tellus ac cursus commodo.
+  %hr.featurette-divider
+
+  %footer
+    .row
+      .col-lg-12
+        %p Copyright © Your Website 2014
 %ui-view

@@ -15,10 +15,6 @@
  @import "bootstrap-sass-official/assets/stylesheets/bootstrap-sprockets";
  @import "bootstrap-sass-official/assets/stylesheets/bootstrap";
 
-/*
- *= require_tree .
- *= require_self
- */
 
 [ng-click],
 [data-ng-click],
@@ -37,4 +33,14 @@
 
 .grayed_out {
   color: #888888;
+}
+
+.home-image{
+  background-image: url("notebook-photo.jpg");
+  background-size: cover;
+  height: 300px;
+}
+
+body {
+  font-family: 'Lora', serif;
 }
