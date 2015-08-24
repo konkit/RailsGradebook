@@ -30,6 +30,52 @@ RSpec.describe TeachersController, type: :controller do
   context "is authorized" do
     is_authorized
 
+    describe "GET #subjects_and_divisions" do
+      let!(:teacher) { FactoryGirl.create(:teacher) }
+      let!(:subjects) { FactoryGirl.create_list(:subject, 2, teacher: teacher) }
+
+      before(:each) do
+        expect(controller).to receive(:current_user).at_least(:once).and_return(teacher)
+        get :subjects_and_divisions, {format: :json}
+      end
+
+      it "should show subjects lead by currently logged teacher" do
+        expect(assigns(:subjects)).to match_array(subjects)
+      end
+
+      it "should render proper JSON response" do
+        expect(response.body).to be_json_eql(subjects.to_json(:include => :divisions, :only => [:name, :divisions]))
+      end
+    end
+
+    describe "GET #get_grades" do
+      let!(:grades) { FactoryGirl.create_list(:grade, 2, student: student)}
+      let!(:student) { FactoryGirl.create(:student) }
+      let!(:student_grades_map) { [{ student: student, grades: grades }] }
+
+      before(:each) do
+        expect(Student).to receive(:get_student_grades_map).with(1, 2).and_return( student_grades_map )
+        get :get_grades, { format: :json, division_id: 1, subject_id: 2}
+      end
+
+      it "should show grades from given division and subject" do
+        expect(assigns(:students)).to eq(student_grades_map)
+      end
+
+      it "should return proper JSON" do
+        expect(response.body).to be_json_eql(student_grades_map.to_json)
+      end
+    end
+
+
+    describe "GET #index" do
+      it "assigns all teachers as @teachers" do
+        teacher = Teacher.create! valid_attributes
+        get :index, {format: :json}
+        expect(assigns(:teachers)).to match_array(teacher)
+      end
+    end
+
     describe "POST #create" do
       context "with valid params" do
         it "creates a new Teacher" do

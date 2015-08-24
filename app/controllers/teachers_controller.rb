@@ -5,17 +5,11 @@ class TeachersController < ApplicationController
   load_and_authorize_resource
 
   def subjects_and_divisions
-    teacher = current_user
-    render json: subjects = Subject.includes(:divisions).where( teacher: teacher ).as_json(:include => :divisions)
+    @subjects = Subject.includes(:divisions).where( teacher: current_user )
   end
 
   def get_grades
-    @students = Student.includes(:grades).where(division_id: params[:division_id]).map do |student|
-      {
-        student: student,
-        grades: student.grades.where(subject_id: params[:subject_id])
-      }
-    end
+    @students = Student.get_student_grades_map(params[:division_id], params[:subject_id])
   end
 
   #############

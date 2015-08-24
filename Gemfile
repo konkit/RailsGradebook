@@ -66,6 +66,8 @@ group :development, :test do
   gem 'brakeman'
   gem 'rails_best_practices'
 
+  gem 'json_spec', :git => "https://github.com/rusterholz/json_spec.git"
+
   gem 'database_cleaner'
 
   # Access an IRB console on exception pages or by using <%= console %> in views

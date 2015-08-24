@@ -5,6 +5,7 @@ RSpec.describe StudentsController, type: :controller do
   render_views
   let(:json) { JSON.parse(response.body) }
 
+  let(:student) { FactoryGirl.create(:student) }
   let(:student_template) { FactoryGirl.build(:student) }
 
   let(:valid_attributes) {
@@ -31,6 +32,24 @@ RSpec.describe StudentsController, type: :controller do
 
   context "is authorized" do
     is_authorized
+
+    describe "GET #get_students_grades" do
+      it "should set student as @student" do
+        expect(controller).to receive(:current_user).at_least(:once).and_return( student )
+        expect(controller).to receive(:authorize!).with(:get_students_grades, student).and_return( true )
+        expect(Student).to receive(:includes).and_call_original
+        get :get_students_grades, {format: :json}
+        expect(assigns(:student)).to eq(student)
+      end
+    end
+
+    describe "GET #index" do
+      it "assigns all divisions as @divisions" do
+        expected = Student.create!(valid_attributes)
+        get :index, {format: :json}
+        expect(assigns(:students)).to match_array(expected)
+      end
+    end
 
     describe "POST #create" do
       context "with valid params" do

@@ -5,10 +5,6 @@ RSpec.describe GenerateGradesCsvJob, type: :job do
     FactoryGirl.create(:report, user: FactoryGirl.create(:teacher) )
   end
 
-  let(:args) do
-    report.id
-  end
-
   let(:job) do
     GenerateGradesCsvJob.new
   end
