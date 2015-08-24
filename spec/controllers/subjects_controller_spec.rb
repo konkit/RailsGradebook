@@ -5,8 +5,8 @@ RSpec.describe SubjectsController, type: :controller do
   render_views
   let(:json) { JSON.parse(response.body) }
 
-  let(:valid_attributes) {
-    { name: 'Maths', teacher_id: FactoryGirl.create(:teacher, email: Faker::Internet.email).id }
+  let!(:valid_attributes) {
+    { name: 'Maths', teacher_id: FactoryGirl.create(:teacher).id }
   }
 
   let(:invalid_attributes) {

@@ -3,14 +3,18 @@ require 'csv'
 class ReportsController < ApplicationController
 
   def get_reports
-    render json: Report.all
+    authorize! :get_reports, current_user
+    render json: Report.where(user: current_user)
   end
 
   def view_report
-    render text: Report.find_by(filename: params[:filename]).content, content_type: 'text/csv'
+    report = Report.find_by(filename: params[:filename])
+    authorize! :view_reports, report
+    render text: report.content, content_type: 'text/csv'
   end
 
   def generate_report
+    authorize! :generate_reports, current_user
     filename = "grades#{Time.now.to_f}".gsub('.', '_')
     report_model = Report.create!(filename: filename, status: :in_progress, user: current_user )
 

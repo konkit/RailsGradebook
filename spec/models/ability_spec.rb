@@ -23,7 +23,8 @@ RSpec.describe Ability, type: :model do
 
     it{ is_expected.to be_able_to(:manage, grade ) }
 
-    it { is_expected.to be_able_to(:generate_csv, :all)}
+    it { is_expected.to be_able_to(:view_reports, Report.new(user: teacher) ) }
+    it { is_expected.to be_able_to(:generate_reports, :all)}
   end
 
   describe "Principal" do

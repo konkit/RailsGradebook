@@ -48,7 +48,9 @@ class Ability
     can :subjects_and_divisions, Teacher, :id => user.id
     can :get_grades, Teacher, :id => user.id
 
-    can :generate_csv, :all
+    can :get_reports, Teacher, :id => user.id
+    can :view_reports, Report, :user => user
+    can :generate_reports, :all
   end
 
 

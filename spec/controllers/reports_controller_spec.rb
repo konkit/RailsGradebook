@@ -3,9 +3,14 @@ require 'rails_helper'
 RSpec.describe ReportsController, type: :controller do
   #render_views
   #let(:json) { JSON.parse(response.body) }
+  let!(:teacher) { FactoryGirl.create(:teacher) }
+  before(:each) do
+    expect(controller).to receive(:current_user).at_least(:once).and_return(teacher)
+  end
 
   describe "get_reports" do
-    let!(:reports) { FactoryGirl.create_list(:report, 3 )}
+    let!(:reports) { FactoryGirl.create_list(:report, 3, user: teacher )}
+    let!(:unowned_report) { FactoryGirl.create(:report, user: FactoryGirl.create(:teacher, email: Faker::Internet.email) )}
 
     it "should return proper JSON with all reports" do
       get :get_reports, :format => :json
@@ -14,7 +19,8 @@ RSpec.describe ReportsController, type: :controller do
   end
 
   describe "view_report" do
-    let!(:report) { FactoryGirl.create(:report, filename: 'FilenameAsdf', content: 'asdf') }
+    let!(:report) { FactoryGirl.create(:report, filename: 'FilenameAsdf', content: 'asdf', user: teacher ) }
+    let!(:unowned_report) { FactoryGirl.create(:report, filename: 'Aaa', user: FactoryGirl.create(:teacher, email: Faker::Internet.email) )}
 
     it "should return proper JSON with desired report" do
       get :view_report, :format => :json, :filename => 'FilenameAsdf'
@@ -23,11 +29,9 @@ RSpec.describe ReportsController, type: :controller do
   end
 
   describe "generate_report" do
-    let!(:teacher) { FactoryGirl.create(:teacher) }
     let!(:current_report_count) { Report.count }
 
     before(:each) do
-      expect(controller).to receive(:current_user).and_return(teacher)
       expect(GenerateGradesCsvJob).to receive(:perform_later).and_return(true)
 
       get :generate_report, :format => :json

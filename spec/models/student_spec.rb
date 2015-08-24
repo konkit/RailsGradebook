@@ -12,27 +12,22 @@ RSpec.describe Student, type: :model do
   end
 
   it "is invalid without name" do
-    student = FactoryGirl.build(:student, division: nil)
+    student = FactoryGirl.build(:student, name: nil)
     expect(student).to be_invalid
   end
 
   describe "get_students_grades_map" do
+    let!(:division) { FactoryGirl.create(:division) }
+    let!(:students) { FactoryGirl.create_list(:student, 2, division: division) }
+    let!(:subject)  { FactoryGirl.create(:subject) }
+    let!(:grades)   { FactoryGirl.create_list(:grade, 2, subject: subject, student: students[0]) }
+    let!(:grade_from_other_subject) { FactoryGirl.create(:grade, subject: FactoryGirl.create(:subject), student: students[0]) }
+
     it "should show grades from given division and subject" do
-      division = FactoryGirl.create(:division)
-
-      student1 = FactoryGirl.create(:student, email: Faker::Internet.email, division_id: division.id)
-      student2 = FactoryGirl.create(:student, email: Faker::Internet.email, division_id: division.id)
-
-      subject1 = FactoryGirl.create(:subject)
-
-      grade1_1 = FactoryGirl.create(:grade, subject: subject1, student: student1)
-      grade1_2 = FactoryGirl.create(:grade, subject: subject1, student: student1)
-      grade_from_other_subject = FactoryGirl.create(:grade, subject: FactoryGirl.create(:subject), student: student1)
-
-      result = Student.get_student_grades_map(division.id, subject1.id)
+      result = Student.get_student_grades_map(division.id, subject.id)
       expected =  [
-        { student: student1, grades: [grade1_1, grade1_2] },
-        { student: student2, grades: [] }
+        { student: students[0], grades: [grades[0], grades[1]] },
+        { student: students[1], grades: [] }
       ]
       expect(result).to match_array( expected )
     end
