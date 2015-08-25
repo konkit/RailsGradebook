@@ -2,7 +2,7 @@ gradebookApp.controller(
   'DivisionEditModalController',
   [
     '$scope', '$modalInstance', 'DivisionsService', 'division', 'subjectsData', '$filter',
-    function ($scope, $modalInstance, DivisionsService, division, subjectsData, $filter) {
+    function($scope, $modalInstance, DivisionsService, division, subjectsData, $filter) {
       $scope.division = division;
       $scope.subjectsData = subjectsData;
 
@@ -14,7 +14,7 @@ gradebookApp.controller(
 
           // check if given subject exists in $scope.division.subjects collection
           // in other words - whether it is assigned
-          if( $filter('filter')($scope.division.subjects, {id: v.id}, true).length ) {
+          if ($filter('filter')($scope.division.subjects, {id: v.id}, true).length) {
             newAssignedSubject.assigned = true;
           }
 
@@ -22,11 +22,12 @@ gradebookApp.controller(
         });
       })();
 
-      $scope.ok = function (obj) {
+      $scope.ok = function(obj) {
         $(obj.currentTarget).prop('disabled', true);
 
         // Mapping subjects collection to collection of ids
-        var subjects = $filter('filter')($scope.assignedSubjects, {assigned: true}).map(function(x){ return {id: x.subject.id} });
+        var subjects = $filter('filter')($scope.assignedSubjects, {assigned: true})
+                       .map(function(x) { return {id: x.subject.id}; });
 
         DivisionsService.update($scope.division, subjects)
           .success(function(response) {
@@ -34,14 +35,14 @@ gradebookApp.controller(
           })
           .error(function(response) {
             $(obj.currentTarget).prop('disabled', false);
-
+            $scope.alerts = [];
             angular.forEach(response.errors, function(value, key) {
               $scope.addAlert(value, 'danger');
             });
-          })
+          });
       };
 
-      $scope.cancel = function () {
+      $scope.cancel = function() {
         $modalInstance.dismiss('cancel');
       };
 
@@ -54,6 +55,6 @@ gradebookApp.controller(
       $scope.closeAlert = function(index) {
         $scope.alerts.splice(index, 1);
       };
-    }
+    },
   ]
 );

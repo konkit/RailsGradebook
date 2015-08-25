@@ -7,6 +7,6 @@ gradebookApp.controller(
       GradesService.getStudentGrades().success(function(data) {
         $scope.grades = data;
       });
-    }
+    },
   ]
 );

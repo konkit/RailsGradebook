@@ -2,10 +2,10 @@ gradebookApp.controller(
   'LoginModalController',
   [
     '$scope', '$modalInstance', 'LoginService',
-    function ($scope, $modalInstance, LoginService) {
+    function($scope, $modalInstance, LoginService) {
       $scope.user_credentials = { email: '', password: ''}
 
-      $scope.ok = function (obj) {
+      $scope.ok = function(obj) {
         $(obj.currentTarget).prop('disabled', true);
 
         LoginService.login($scope.user_credentials)
@@ -13,9 +13,10 @@ gradebookApp.controller(
             $modalInstance.close();
           })
           .error(function(response) {
+            $scope.alerts = [];
             $(obj.currentTarget).prop('disabled', false);
             $scope.addAlert(response.error, 'danger');
-          })
+          });
       };
 
       function loginCallback(response) {
