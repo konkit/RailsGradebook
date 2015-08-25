@@ -14,6 +14,11 @@ class StudentsController < ApplicationController
     @students = Student.all
   end
 
+  def show
+    @student = Student.find(params[:id])
+    @grades = @student.grades_by_subject
+  end
+
   def create
     @student = Student.new(student_params)
     handle_create(@student)

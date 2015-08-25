@@ -57,6 +57,34 @@ RSpec.describe StudentsController, type: :controller do
       end
     end
 
+    describe "GET #show" do
+      let!(:student) { FactoryGirl.create(:student) }
+      let!(:subjects) { FactoryGirl.create_list(:subject, 2) }
+      let!(:grades)   { FactoryGirl.create_list(:grade, 2, student: student, subject: subjects[0])}
+      let!(:grades_2) { FactoryGirl.create_list(:grade, 2, student: student, subject: subjects[1])}
+
+      before(:each) { get :show, id: student.id, format: :json }
+
+      it 'assigns student as @student' do
+        expect(assigns(:student)).to eq(student)
+      end
+
+      it 'should render proper JSON response' do
+        json_response = student
+                        .as_json(include: [:division])
+                        .merge(
+                          grades_by_subject: student.grades_by_subject.map do |subject, grades|
+                            { subject: subject, grades: grades.map(&:gradevalue) }
+                          end
+                        )
+        expect(response.body).to be_json_eql(json_response.to_json)
+      end
+
+      it "should return status 200 OK" do
+        expect(response).to have_http_status(:ok)
+      end
+    end
+
     describe "POST #create" do
       context "with valid params" do
         it "creates a new Student" do

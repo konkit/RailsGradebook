@@ -18,7 +18,7 @@
       %tbody
         %tr{"ng-repeat" => "student in studentsData"}
           %td
-            {{student.name}}
+            %a{"ng-click" => "openShow(student)"} {{student.name}}
           %td
             {{student.division.name}}
           %td

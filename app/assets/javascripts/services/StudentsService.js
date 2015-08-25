@@ -1,31 +1,28 @@
-services.factory('StudentsService', ['$http', function ($http) {
+services.factory('StudentsService', ['$http', function($http) {
     o = {
-      grades: []
+      grades: [],
     };
 
     o.getStudents = function() {
-      return $http.get( 'students.json' )
-    }
+      return $http.get('students.json');
+    };
 
-    o.create = function( student ) {
-      return $http.post( 'students/',
-        {
-          'student': student
-        }
-      )
-    }
+    o.showStudent = function(student) {
+      return $http.get('students/' + student.id + '.json');
+    };
 
-    o.update = function( student ) {
-      return $http.put( 'students/' + student.id + '.json',
-        {
-          'student': student
-        }
-      )
-    }
+    o.create = function(student) {
+      return $http.post('students/', { student: student, });
+    };
 
-    o.delete = function( student ) {
-      return $http.delete( 'students/' + student.id + '.json')
-    }
+    o.update = function(student) {
+      return $http.put('students/' + student.id + '.json', { student: student,});
+    };
+
+    o.delete = function(student) {
+      return $http.delete('students/' + student.id + '.json');
+    };
 
     return o;
-}]);
+  },
+]);

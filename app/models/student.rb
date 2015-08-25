@@ -12,4 +12,10 @@ class Student < User
       }
     end
   end
+
+  def grades_by_subject
+    Grade.includes(:subject)
+      .where(student: self)
+      .group_by { |grade| grade.subject.name }
+  end
 end

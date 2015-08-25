@@ -1,0 +1,24 @@
+.modal-header
+  %h3 Show student
+
+.modal-body
+  %alert{:close => "closeAlert($index)", "ng-repeat" => "alert in alerts", :type => "{{alert.type}}"} {{alert.msg}}
+
+  %label Name
+  %p {{student.name}}
+
+  %label Email
+  %p {{ student.email }}
+
+  %label Division
+  %p {{ student.division.name }}
+
+  %label Grades:
+  %p{"ng-repeat" => "gradeGroup in student.grades_by_subject"}
+    {{gradeGroup.subject}}:
+    %span{"ng-repeat" => "grade in gradeGroup.grades track by $index"}
+      {{grade}}, 
+
+.modal-footer
+  %button.btn.btn-primary{:type => "button", "ng-click" => "ok($event)"} Save
+  %button.btn.btn-warning{:type => "button", "ng-click" => "cancel()"} Cancel
