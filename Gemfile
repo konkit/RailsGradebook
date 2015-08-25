@@ -1,6 +1,6 @@
 source 'https://rubygems.org'
 
-ruby "2.2.0"
+ruby '2.2.0'
 
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
 gem 'rails', '4.2.0'
@@ -50,12 +50,11 @@ gem 'sidekiq'
 # For heroku
 gem 'rails_12factor', group: :production
 
-gem 'simplecov', :require => false, :group => :test
+gem 'simplecov', require: false, group: :test
 
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
   gem 'byebug'
-  gem 'pry'
 
   gem 'rspec-rails'
   gem 'factory_girl_rails'
@@ -65,8 +64,9 @@ group :development, :test do
 
   gem 'brakeman'
   gem 'rails_best_practices'
+  gem 'rubocop', require: false
 
-  gem 'json_spec', :git => "https://github.com/rusterholz/json_spec.git"
+  gem 'json_spec', git: 'https://github.com/rusterholz/json_spec.git'
 
   gem 'database_cleaner'
 

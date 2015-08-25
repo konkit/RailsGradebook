@@ -18,7 +18,7 @@ class ReportsController < ApplicationController
     filename = "grades#{Time.now.to_f}".gsub('.', '_')
     report_model = Report.create!(filename: filename, status: :in_progress, user: current_user )
 
-    GenerateGradesCsvJob.perform_later( report_model.id )
+    GenerateGradesCsvJob.perform_later(report_model.id)
 
     render json: report_model
   end

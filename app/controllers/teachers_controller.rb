@@ -5,7 +5,7 @@ class TeachersController < ApplicationController
   load_and_authorize_resource
 
   def subjects_and_divisions
-    @subjects = Subject.includes(:divisions).where( teacher: current_user )
+    @subjects = Subject.includes(:divisions).where(teacher: current_user)
   end
 
   def get_grades
