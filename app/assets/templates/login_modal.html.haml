@@ -1,4 +1,7 @@
 .modal-header
+  %button.close{"type" => "button", "data-dismiss" => "modal",
+    "aria-hidden"=>true, "ng-click" => "cancel()"}
+    %span.glyphicon.glyphicon-remove
   %h3 Sign in
 
 .modal-body
