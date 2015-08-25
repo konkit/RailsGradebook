@@ -16,6 +16,8 @@
 //= require angular-ui-router
 //= require angular-bootstrap
 
+//= require bootstrap-sass-official/assets/javascripts/bootstrap-sprockets
+
 //= require angular-rails-templates
 //= require Chart.js/Chart
 //= require angular-chart.js/angular-chart
