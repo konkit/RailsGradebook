@@ -2,13 +2,16 @@
   %h3 Sign in
 
 .modal-body
-  %alert{:close => "closeAlert($index)", "ng-repeat" => "alert in alerts", :type => "{{alert.type}}"} {{alert.msg}}
+  .container-fluid
+    .col-md-10.col-md-offset-1
+      %alert{:close => "closeAlert($index)", "ng-repeat" => "alert in alerts", :type => "{{alert.type}}"} {{alert.msg}}
 
-  %label Email
-  %input.form-control{"ng-model" => "user_credentials.email"}
+      %label Email
+      %input.form-control{"ng-model" => "user_credentials.email"}
 
-  %label Password
-  %input.form-control{"ng-model" => "user_credentials.password", "type" => "password"}
+      %label Password
+      %input.form-control{"ng-model" => "user_credentials.password", "type" => "password"}
 
 .modal-footer
-  %button.btn.btn-default.btn-block{:type => "button", "ng-click" => "ok($event)"} Login
+  .col-md-8.col-md-offset-2
+    %button.btn.btn-default.btn-block{:type => "button", "ng-click" => "ok($event)"} Login

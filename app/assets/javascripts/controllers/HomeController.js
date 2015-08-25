@@ -33,11 +33,11 @@ gradebookApp.controller(
       refreshCurrentUserData();
 
       $scope.openLoginModal = function() {
-        var modalInstance = $modal.open( {
+        var modalInstance = $modal.open({
           animation: true,
           templateUrl: '/assets/login_modal.html',
           controller: 'LoginModalController',
-          size: 'sm'
+          size: 'md',
         });
 
         modalInstance.result.then(function() {
@@ -46,14 +46,14 @@ gradebookApp.controller(
       }
 
       $scope.openChangePasswordModal = function() {
-        var modalInstance = $modal.open( {
+        var modalInstance = $modal.open({
           animation: true,
           templateUrl: '/assets/change_password_modal.html',
           controller: 'ChangePasswordModalController',
           size: 'sm',
           resolve: {
             user_data: function() { return $scope.current_user; }
-          }
+          },
         });
 
         modalInstance.result.then(function() {

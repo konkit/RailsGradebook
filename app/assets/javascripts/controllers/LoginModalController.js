@@ -28,7 +28,7 @@ gradebookApp.controller(
         });
       }
 
-      $scope.cancel = function () {
+      $scope.cancel = function() {
         $modalInstance.dismiss('cancel');
       };
 
@@ -41,6 +41,6 @@ gradebookApp.controller(
       $scope.closeAlert = function(index) {
         $scope.alerts.splice(index, 1);
       };
-    }
+    },
   ]
 );
