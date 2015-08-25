@@ -5,8 +5,8 @@ gradebookApp = angular.module('gradebookApp', [
   'gradebookApp.services',
   'ui.bootstrap',
   'chart.js',
-  'ngAnimate'
-])
+  'ngAnimate',
+]);
 
 gradebookApp.config(
   [
@@ -19,65 +19,65 @@ gradebookApp.config(
         .state('app', {
           url: '/',
           templateUrl: '/assets/home.html',
-          controller: 'HomeController'
+          controller: 'HomeController',
         })
         .state('studentRole', {
           templateUrl: '/assets/nav_student_role.html',
-          controller: 'HomeController'
+          controller: 'HomeController',
         })
         .state('teacherRole', {
           templateUrl: '/assets/nav_teacher_role.html',
-          controller: 'HomeController'
+          controller: 'HomeController',
         })
         .state('principalRole', {
           templateUrl: '/assets/nav_principal_role.html',
-          controller: 'HomeController'
+          controller: 'HomeController',
         })
         .state('studentRole.studentDashboard', {
           url: '/student_dashboard/',
           templateUrl: '/assets/student_dashboard.html',
-          controller: 'StudentDashboardController'
+          controller: 'StudentDashboardController',
         })
         .state('teacherRole.teacherDashboard', {
           url: '/teacher_dashboard/',
           templateUrl: '/assets/teacher_dashboard.html',
-          controller: 'TeacherDashboardController'
+          controller: 'TeacherDashboardController',
         })
         .state('teacherRole.teacherReportFiles', {
           url: '/teacher_reports/',
           templateUrl: '/assets/teacher_report_files.html',
-          controller: 'TeacherReportFilesController'
+          controller: 'TeacherReportFilesController',
         })
         .state('principalRole.principalDashboard', {
           url: '/principal_dashboard/',
           templateUrl: '/assets/principal_dashboard.html',
-          controller: 'PrincipalDashboardController'
+          controller: 'PrincipalDashboardController',
         })
         .state('principalRole.teachercrud', {
           url: '/teacher_crud/',
           templateUrl: '/assets/teacher_crud.html',
-          controller: 'TeacherCRUDController'
+          controller: 'TeacherCRUDController',
         })
         .state('principalRole.studentcrud', {
           url: '/student_crud/',
           templateUrl: '/assets/student_crud.html',
-          controller: 'StudentCRUDController'
+          controller: 'StudentCRUDController',
         })
         .state('principalRole.divisioncrud', {
           url: '/division_crud/',
           templateUrl: '/assets/division_crud.html',
-          controller: 'DivisionCRUDController'
+          controller: 'DivisionCRUDController',
         })
         .state('principalRole.subjectcrud', {
           url: '/subject_crud/',
           templateUrl: '/assets/subject_crud.html',
-          controller: 'SubjectCRUDController'
+          controller: 'SubjectCRUDController',
         })
         .state('principalRole.grades', {
           url: '/principal_grades/',
           templateUrl: '/assets/principal_grades.html',
-          controller: 'PrincipalGradesController'
+          controller: 'PrincipalGradesController',
         });
-    }
+    },
   ]
-)
+);

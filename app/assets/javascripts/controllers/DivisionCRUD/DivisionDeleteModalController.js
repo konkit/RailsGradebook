@@ -2,10 +2,10 @@ gradebookApp.controller(
   'DivisionDeleteModalController',
   [
     '$scope', '$modalInstance', 'DivisionsService', 'division',
-    function ($scope, $modalInstance, DivisionsService, division) {
+    function($scope, $modalInstance, DivisionsService, division) {
       $scope.division = division;
 
-      $scope.ok = function (obj) {
+      $scope.ok = function(obj) {
         $(obj.currentTarget).prop('disabled', true);
 
         DivisionsService.delete($scope.division)
@@ -18,10 +18,10 @@ gradebookApp.controller(
             angular.forEach(response.errors, function(value, key) {
               $scope.addAlert(value, 'danger');
             });
-          })
+          });
       };
 
-      $scope.cancel = function () {
+      $scope.cancel = function() {
         $modalInstance.dismiss('cancel');
       };
 
@@ -34,6 +34,6 @@ gradebookApp.controller(
       $scope.closeAlert = function(index) {
         $scope.alerts.splice(index, 1);
       };
-    }
+    },
   ]
 );
