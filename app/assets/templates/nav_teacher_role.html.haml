@@ -1,27 +1,28 @@
-%link{"rel" => "stylesheet", "property" => "stylesheet", "href" => "assets/bootstrap-dashboard-style-addons.scss"}
-
-%nav.navbar.navbar-default.navbar-fixed-top
-  .container-fluid
-    .navbar-header
-      .navbar-brand Gradebook App
-    %div
-      %ul.nav.navbar-nav.navbar-right
-        %li{"dropdown" => ""}
-          %a.cursor-pointer{"dropdown-toggle" => ""} Welcome {{current_user.name}}
-          %ul.dropdown-menu{"role" => "menu"}
-            %li{"role" => "menuitem"}
-              %a{"ng-click" => "openChangePasswordModal()"} Change password
-        %li
-          %a{"ng-click" => "logout()"} Sign out
+%nav.navbar.navbar-default.navbar-static-top
+  .navbar-header
+    .navbar-brand Gradebook App
+    %button.navbar-toggle{'data-toggle':'collapse', 'data-target': '#myNavbar'}
+      %span.icon-bar
+      %span.icon-bar
+      %span.icon-bar
+  .navbar-collapse.collapse#myNavbar
+    %ul.nav.navbar-nav.navbar-right
+      %li{"dropdown" => ""}
+        %a.cursor-pointer{"dropdown-toggle" => ""} Welcome {{current_user.name}}
+        %ul.dropdown-menu{"role" => "menu"}
+          %li{"role" => "menuitem"}
+            %a{"ng-click" => "openChangePasswordModal()"} Change password
+      %li
+        %a{"ng-click" => "logout()"} Sign out
 
 .container-fluid{"ng-controller" => "TeacherNavigationController"}
-  .row.row-offcanvas.row-offcanvas-left
-    .col-sm-3.col-md-2.sidebar-offcanvas#sidebar{"role" => "navigation"}
+  .row
+    .col-md-2{"role" => "navigation"}
       .nav.nav-sidebar
         %li
           %a{"ng-click" => "goToGrades()"} Grades overview
         %li
           %a{"ng-click" => "goToReportFiles()"} Report files
 
-    .col-sm-9.col-md-10.main
+    .col-md-10.main
       %ui-view
