@@ -44,10 +44,16 @@ RSpec.describe StudentsController, type: :controller do
     end
 
     describe "GET #index" do
+      let!(:students) { FactoryGirl.create_list(:student, 3) }
+
+      before(:each) { get :index, {format: :json} }
+
       it "assigns all divisions as @divisions" do
-        expected = Student.create!(valid_attributes)
-        get :index, {format: :json}
-        expect(assigns(:students)).to match_array(expected)
+        expect(assigns(:students)).to match_array(students)
+      end
+
+      it "should render proper JSON response" do
+        expect(response.body).to be_json_eql(students.to_json(:include => :division) )
       end
     end
 

@@ -17,10 +17,16 @@ RSpec.describe DivisionsController, type: :controller do
     is_authorized
 
     describe "GET #index" do
+      let!(:divisions) { FactoryGirl.create_list(:division, 4) }
+
+      before(:each) { get :index, {format: :json} }
+
       it "assigns all divisions as @divisions" do
-        expected = Division.create!(valid_attributes)
-        get :index, {format: :json}
-        expect(assigns(:divisions)).to match_array(expected)
+        expect(assigns(:divisions)).to match_array(divisions)
+      end
+
+      it "returns proper JSON response" do
+        expect(response.body).to be_json_eql(divisions.to_json(:include => :subjects))
       end
     end
 

@@ -5,8 +5,10 @@ RSpec.describe SubjectsController, type: :controller do
   render_views
   let(:json) { JSON.parse(response.body) }
 
+  let(:teacher) { FactoryGirl.create(:teacher) }
+
   let!(:valid_attributes) {
-    { name: 'Maths', teacher_id: FactoryGirl.create(:teacher).id }
+    { name: 'Maths', teacher_id: teacher.id }
   }
 
   let(:invalid_attributes) {
@@ -17,10 +19,18 @@ RSpec.describe SubjectsController, type: :controller do
     is_authorized
 
     describe "GET #index" do
+      let!(:subjects) { FactoryGirl.create_list(:subject, 5, teacher_id: teacher.id) }
+
+      before(:each) { get :index, {format: :json} }
+
       it "assigns all subjects as @subjects" do
-        subject = Subject.create! valid_attributes
         get :index, {format: :json}
-        expect(assigns(:subjects)).to match_array(subject)
+        expect(assigns(:subjects)).to match_array(subjects)
+      end
+
+      it "renders proper JSON response" do
+        get :index, {format: :json}
+        expect(response.body).to be_json_eql(subjects.to_json(:include => { :teacher => { :only => :name } } ) )
       end
     end
 

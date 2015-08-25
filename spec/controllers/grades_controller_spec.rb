@@ -113,12 +113,6 @@ RSpec.describe GradesController, type: :controller do
   context "is unauthorized" do
     is_unauthorized
 
-    describe "GET #index" do
-      it "raise CanCan::AccessDenied error" do
-        expect{ get :index, {format: :json}  }.to raise_error(CanCan::AccessDenied)
-      end
-    end
-
     describe "POST #create" do
       it "raise CanCan::AccessDenied error" do
         expect{ post :create, {:grade => invalid_attributes}  }.to raise_error(CanCan::AccessDenied)
