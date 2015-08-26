@@ -80,8 +80,26 @@ RSpec.describe TeachersController, type: :controller do
       it "should render proper JSON response" do
         expect(response.body).to be_json_eql(teachers.to_json(:only => [:name, :email]) )
       end
+    end
 
+    describe "GET #show" do
+      let!(:teacher) { FactoryGirl.create(:teacher) }
+      let!(:subjects) { FactoryGirl.create_list(:subject, 4, teacher: teacher)}
 
+      before(:each) { get :show, id: teacher.id, format: :json }
+
+      it 'teacher as @teacher' do
+        expect(assigns(:teacher)).to eq(teacher)
+      end
+
+      it 'should render proper JSON response' do
+        json_response = teacher.as_json(only: [:name, :id, :email], include: { subjects: {only: :name}})
+        expect(response.body).to be_json_eql(json_response.to_json)
+      end
+
+      it 'should return status 200 OK' do
+        expect(response).to have_http_status(:ok)
+      end
     end
 
     describe "POST #create" do
