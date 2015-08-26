@@ -70,6 +70,8 @@ group :development, :test do
 
   gem 'database_cleaner'
 
+  gem 'shoulda-matchers'
+
   # Access an IRB console on exception pages or by using <%= console %> in views
   gem 'web-console', '~> 2.0'
 
