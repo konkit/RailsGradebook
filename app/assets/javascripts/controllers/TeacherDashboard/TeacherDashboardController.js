@@ -13,6 +13,18 @@ gradebookApp.controller('TeacherDashboardController', ['$scope', 'GradesService'
     });
   }
 
+  $scope.openShow = function(student) {
+    var modalInstance = $modal.open({
+      animation: true,
+      templateUrl: '/assets/student_show_modal.html',
+      controller: 'StudentShowModalController',
+      size: 'md',
+      resolve: {
+        student: function() { return student; },
+      },
+    });
+  };
+
   $scope.getGrades = function() {
     if ($scope.selectedDivision == null) {
       $scope.selectedDivision = $scope.selectedSubject.divisions[0];
