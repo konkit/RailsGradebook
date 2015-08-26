@@ -1,23 +1,17 @@
 .modal-header
-  %h3 {{student.name}}
+  %h3 {{teacher.name}}
 
 .modal-body
   %alert{:close => "closeAlert($index)", "ng-repeat" => "alert in alerts", :type => "{{alert.type}}"} {{alert.msg}}
 
   %label Name
-  %p {{student.name}}
+  %p {{teacher.name}}
 
   %label Email
-  %p {{ student.email }}
+  %p {{teacher.email}}
 
-  %label Division
-  %p {{ student.division.name }}
-
-  %label Grades:
-  %p{"ng-repeat" => "gradeGroup in student.grades_by_subject"}
-    {{gradeGroup.subject}}:
-    %span{"ng-repeat" => "grade in gradeGroup.grades track by $index"}
-      {{grade}},
+  %label Subjects:
+  %p{'ng-repeat': 'subject in teacher.subjects track by $index'} {{subject.name}}
 
 .modal-footer
   %button.btn.btn-primary{:type => "button", "ng-click" => "ok($event)"} Save

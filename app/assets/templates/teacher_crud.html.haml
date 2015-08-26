@@ -17,7 +17,7 @@
       %tbody
         %tr{"ng-repeat" => "teacher in teachersData"}
           %td
-            {{teacher.name}}
+            %a{"ng-click" => "openShow(teacher)"} {{teacher.name}}
           %td
             %button.btn.btn-primary{"ng-click" => "openEdit(teacher)"}
               Edit

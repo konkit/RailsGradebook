@@ -10,6 +10,18 @@ gradebookApp.controller(
       }
       $scope.getTeachers();
 
+      $scope.openShow = function(teacher) {
+        var modalInstance = $modal.open({
+          animation: true,
+          templateUrl: '/assets/teacher_show_modal.html',
+          controller: 'TeacherShowModalController',
+          size: 'md',
+          resolve: {
+            teacher: function() { return teacher; },
+          },
+        });
+      };
+
       $scope.openCreate = function(teacher) {
         var modalInstance = $modal.open( {
           animation: true,
