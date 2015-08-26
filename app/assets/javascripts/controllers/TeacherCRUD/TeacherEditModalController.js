@@ -7,7 +7,7 @@ gradebookApp.controller(
       $scope.teacher = teacher;
 
       $scope.serviceCall = function() {
-        TeachersService.update($scope.teacher);
+        return TeachersService.update($scope.teacher);
       };
 
       ControllersFactory.decorateModalSubmit($scope, $modalInstance, $scope.serviceCall);
