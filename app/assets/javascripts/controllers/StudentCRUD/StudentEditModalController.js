@@ -1,8 +1,9 @@
 gradebookApp.controller(
   'StudentEditModalController',
   [
-    '$scope', '$modalInstance', 'StudentsService', 'DivisionsService', 'student',
-    function($scope, $modalInstance, StudentsService, DivisionsService, student) {
+    '$scope', '$modalInstance', 'StudentsService', 'DivisionsService', 'student', 'ControllersFactory',
+    function($scope, $modalInstance, StudentsService, DivisionsService, student, ControllersFactory) {
+      ControllersFactory.decorateAlerts($scope, $modalInstance);
       $scope.student = student;
 
       DivisionsService.getDivisions().success(function(data) {
@@ -23,20 +24,6 @@ gradebookApp.controller(
               $scope.addAlert(value, 'danger');
             });
           });
-      };
-
-      $scope.cancel = function() {
-        $modalInstance.dismiss('cancel');
-      };
-
-      $scope.alerts = [];
-
-      $scope.addAlert = function(msg, type) {
-        $scope.alerts.push({msg: msg, type: type});
-      };
-
-      $scope.closeAlert = function(index) {
-        $scope.alerts.splice(index, 1);
       };
     },
   ]
