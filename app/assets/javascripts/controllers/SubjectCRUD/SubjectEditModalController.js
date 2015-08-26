@@ -1,8 +1,9 @@
 gradebookApp.controller(
   'SubjectEditModalController',
   [
-    '$scope', '$modalInstance', 'SubjectsService', 'subject', 'teachersData',
-    function($scope, $modalInstance, SubjectsService, subject, teachersData) {
+    '$scope', '$modalInstance', 'SubjectsService', 'subject', 'teachersData', 'ControllersFactory',
+    function($scope, $modalInstance, SubjectsService, subject, teachersData, ControllersFactory) {
+      ControllersFactory.decorateAlerts($scope, $modalInstance);
       $scope.subject = subject;
       $scope.teachersData = teachersData;
 

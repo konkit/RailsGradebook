@@ -1,8 +1,9 @@
 gradebookApp.controller(
   'LoginModalController',
   [
-    '$scope', '$modalInstance', 'LoginService',
-    function($scope, $modalInstance, LoginService) {
+    '$scope', '$modalInstance', 'LoginService', 'ControllersFactory',
+    function($scope, $modalInstance, LoginService, ControllersFactory) {
+      ControllersFactory.decorateAlerts($scope, $modalInstance);
       $scope.user_credentials = { email: '', password: ''}
 
       $scope.ok = function(obj) {
@@ -22,26 +23,9 @@ gradebookApp.controller(
       function loginCallback(response) {
         LoginService.getCurrentUser().success(function(response) {
           $scope.current_user = response;
-
-          console.log($scope.current_user);
-
           $modalInstance.close();
         });
       }
-
-      $scope.cancel = function() {
-        $modalInstance.dismiss('cancel');
-      };
-
-      $scope.alerts = [];
-
-      $scope.addAlert = function(msg, type) {
-        $scope.alerts.push({msg: msg, type: type});
-      };
-
-      $scope.closeAlert = function(index) {
-        $scope.alerts.splice(index, 1);
-      };
     },
   ]
 );

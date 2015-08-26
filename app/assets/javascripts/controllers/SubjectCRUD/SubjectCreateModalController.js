@@ -1,7 +1,8 @@
 gradebookApp.controller(
   'SubjectCreateModalController',
-  ['$scope', '$modalInstance', 'SubjectsService', 'teachersData',
-    function($scope, $modalInstance, SubjectsService, teachersData) {
+  ['$scope', '$modalInstance', 'SubjectsService', 'teachersData', 'ControllersFactory',
+    function($scope, $modalInstance, SubjectsService, teachersData, ControllersFactory) {
+      ControllersFactory.decorateAlerts($scope, $modalInstance);
       $scope.teachersData = teachersData;
 
       $scope.ok = function(obj) {
@@ -18,20 +19,6 @@ gradebookApp.controller(
               $scope.addAlert(value, 'danger');
             });
           });
-      };
-
-      $scope.cancel = function() {
-        $modalInstance.dismiss('cancel');
-      };
-
-      $scope.alerts = [];
-
-      $scope.addAlert = function(msg, type) {
-        $scope.alerts.push({msg: msg, type: type});
-      };
-
-      $scope.closeAlert = function(index) {
-        $scope.alerts.splice(index, 1);
       };
     },
   ]

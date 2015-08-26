@@ -1,6 +1,7 @@
 gradebookApp.controller('GradeCreateModalController',
-  ['$scope', '$modalInstance', 'GradesService', 'subject', 'student',
-  function($scope, $modalInstance, GradesService, subject, student) {
+  ['$scope', '$modalInstance', 'GradesService', 'subject', 'student', 'ControllersFactory',
+  function($scope, $modalInstance, GradesService, subject, student, ControllersFactory) {
+    ControllersFactory.decorateAlerts($scope, $modalInstance);
     $scope.student = student;
     $scope.subject = subject;
     $scope.selectedGradeValue = 1;
@@ -25,20 +26,6 @@ gradebookApp.controller('GradeCreateModalController',
             $scope.addAlert(value, 'danger');
           });
         });
-    };
-
-    $scope.cancel = function() {
-      $modalInstance.dismiss('cancel');
-    };
-
-    $scope.alerts = [];
-
-    $scope.addAlert = function(msg, type) {
-      $scope.alerts.push({msg: msg, type: type});
-    };
-
-    $scope.closeAlert = function(index) {
-      $scope.alerts.splice(index, 1);
     };
   },
 ]);

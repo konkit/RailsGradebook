@@ -1,9 +1,8 @@
 gradebookApp.controller(
   'StudentShowModalController',
   [
-    '$scope', '$modalInstance', 'StudentsService', 'DivisionsService', 'student', 'ControllersFactory',
-    function($scope, $modalInstance, StudentsService, DivisionsService, student, ControllersFactory) {
-      ControllersFactory.decorateAlerts($scope, $modalInstance);
+    '$scope', '$modalInstance', 'StudentsService', 'DivisionsService', 'student',
+    function($scope, $modalInstance, StudentsService, DivisionsService, student) {
       $scope.student = student;
 
       DivisionsService.getDivisions().success(function(data) {
@@ -15,6 +14,10 @@ gradebookApp.controller(
       });
 
       $scope.ok = function(obj) {
+        $modalInstance.dismiss('cancel');
+      };
+
+      $scope.cancel = function(obj) {
         $modalInstance.dismiss('cancel');
       };
     },
