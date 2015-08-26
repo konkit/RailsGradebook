@@ -1,8 +1,9 @@
 gradebookApp.controller(
   'DivisionEditModalController',
   [
-    '$scope', '$modalInstance', 'DivisionsService', 'division', 'subjectsData', '$filter',
-    function($scope, $modalInstance, DivisionsService, division, subjectsData, $filter) {
+    '$scope', '$modalInstance', 'DivisionsService', 'division', 'subjectsData', '$filter', 'ControllersFactory',
+    function($scope, $modalInstance, DivisionsService, division, subjectsData, $filter, ControllersFactory) {
+      ControllersFactory.decorateAlerts($scope, $modalInstance);
       $scope.division = division;
       $scope.subjectsData = subjectsData;
 
@@ -22,39 +23,17 @@ gradebookApp.controller(
         });
       })();
 
-      $scope.ok = function(obj) {
-        $(obj.currentTarget).prop('disabled', true);
-
+      $scope.serviceCall = function() {
         // Mapping subjects collection to collection of ids
         var subjects = $filter('filter')($scope.assignedSubjects, {assigned: true})
-                       .map(function(x) { return {id: x.subject.id}; });
+                       .map(function(x) {
+                         return {id: x.subject.id};
+                       });
 
-        DivisionsService.update($scope.division, subjects)
-          .success(function(response) {
-            $modalInstance.close();
-          })
-          .error(function(response) {
-            $(obj.currentTarget).prop('disabled', false);
-            $scope.alerts = [];
-            angular.forEach(response.errors, function(value, key) {
-              $scope.addAlert(value, 'danger');
-            });
-          });
+        return DivisionsService.update($scope.division, subjects);
       };
 
-      $scope.cancel = function() {
-        $modalInstance.dismiss('cancel');
-      };
-
-      $scope.alerts = [];
-
-      $scope.addAlert = function(msg, type) {
-        $scope.alerts.push({msg: msg, type: type});
-      };
-
-      $scope.closeAlert = function(index) {
-        $scope.alerts.splice(index, 1);
-      };
+      ControllersFactory.decorateModalSubmit($scope, $modalInstance, $scope.serviceCall);
     },
   ]
 );

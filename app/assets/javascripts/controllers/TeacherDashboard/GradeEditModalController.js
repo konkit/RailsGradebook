@@ -12,23 +12,6 @@ gradebookApp.controller(
         $scope.selectedGradeValue = parseInt(obj.currentTarget.innerText);
       };
 
-      $scope.ok = function(obj) {
-        $(obj.currentTarget).prop('disabled', true);
-
-        grade.value = $scope.selectedGradeValue;
-        GradesService.updateGrade(grade, $scope.selectedGradeValue)
-          .success(function(response) {
-            $modalInstance.close();
-          })
-          .error(function(response) {
-            $(obj.currentTarget).prop('disabled', false);
-            $scope.alerts = [];
-            angular.forEach(response.errors, function(value, key) {
-              $scope.addAlert(value, 'danger');
-            });
-          });
-      };
-
       $scope.delete = function(obj) {
         $(obj.currentTarget).prop('disabled', true);
 
@@ -43,6 +26,13 @@ gradebookApp.controller(
             });
           });
       };
+
+      $scope.serviceCall = function() {
+        grade.value = $scope.selectedGradeValue;
+        return GradesService.deleteGrade(grade);
+      };
+
+      ControllersFactory.decorateModalSubmit($scope, $modalInstance, $scope.serviceCall);
     },
   ]
 );

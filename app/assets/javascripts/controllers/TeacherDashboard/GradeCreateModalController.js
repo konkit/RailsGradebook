@@ -12,20 +12,10 @@ gradebookApp.controller('GradeCreateModalController',
       $scope.selectedGradeValue = parseInt(obj.currentTarget.innerText);
     };
 
-    $scope.ok = function(obj) {
-      $(obj.currentTarget).prop('disabled', true);
-
-      GradesService.createGrade(student.id, subject.id, $scope.selectedGradeValue)
-        .success(function(response) {
-          $modalInstance.close();
-        })
-        .error(function(response) {
-          $(obj.currentTarget).prop('disabled', false);
-          $scope.alerts = [];
-          angular.forEach(response.errors, function(value, key) {
-            $scope.addAlert(value, 'danger');
-          });
-        });
+    $scope.serviceCall = function() {
+      return GradesService.createGrade(student.id, subject.id, $scope.selectedGradeValue);
     };
+
+    ControllersFactory.decorateModalSubmit($scope, $modalInstance, $scope.serviceCall);
   },
 ]);

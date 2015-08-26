@@ -6,21 +6,11 @@ gradebookApp.controller(
       ControllersFactory.decorateAlerts($scope, $modalInstance);
       $scope.student = student;
 
-      $scope.ok = function(obj) {
-        $(obj.currentTarget).prop('disabled', true);
-
-        StudentsService.delete($scope.student)
-          .success(function(response) {
-            $modalInstance.close();
-          })
-          .error(function(response) {
-            $(obj.currentTarget).prop('disabled', false);
-            $scope.alerts = [];
-            angular.forEach(response.errors, function(value, key) {
-              $scope.addAlert(value, 'danger');
-            });
-          });
+      $scope.serviceCall = function() {
+        return StudentsService.delete($scope.student);
       };
+
+      ControllersFactory.decorateModalSubmit($scope, $modalInstance, $scope.serviceCall);
     },
   ]
 );

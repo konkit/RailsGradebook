@@ -9,21 +9,11 @@ gradebookApp.controller(
         $scope.divisionsData = data;
       });
 
-      $scope.ok = function(obj) {
-        $(obj.currentTarget).prop('disabled', true);
-
-        StudentsService.create($scope.student)
-          .success(function(response) {
-            $modalInstance.close();
-          })
-          .error(function(response) {
-            $(obj.currentTarget).prop('disabled', false);
-            $scope.alerts = [];
-            angular.forEach(response.errors, function(value, key) {
-              $scope.addAlert(value, 'danger');
-            });
-          });
+      $scope.serviceCall = function() {
+        return StudentsService.create($scope.student);
       };
+
+      ControllersFactory.decorateModalSubmit($scope, $modalInstance, $scope.serviceCall);
     },
   ]
 );

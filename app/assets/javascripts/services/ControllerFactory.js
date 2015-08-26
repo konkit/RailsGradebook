@@ -17,6 +17,24 @@ services.factory('ControllersFactory', [function() {
       };
     };
 
+    o.decorateModalSubmit = function($scope, $modalInstance, serviceCall) {
+      $scope.ok = function(obj) {
+        $(obj.currentTarget).prop('disabled', true);
+
+        serviceCall()
+          .success(function(response) {
+            $modalInstance.close();
+          })
+          .error(function(response) {
+            $(obj.currentTarget).prop('disabled', false);
+            $scope.alerts = [];
+            angular.forEach(response.errors, function(value, key) {
+              $scope.addAlert(value, 'danger');
+            });
+          });
+      };
+    };
+
     return o;
   },
 ]);
