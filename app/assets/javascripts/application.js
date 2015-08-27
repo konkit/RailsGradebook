@@ -15,6 +15,7 @@
 //= require angular/angular
 //= require angular-ui-router
 //= require angular-bootstrap
+//= require angular-mocks
 
 //= require bootstrap-sass-official/assets/javascripts/bootstrap-sprockets
 

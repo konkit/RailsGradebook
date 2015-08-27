@@ -1,4 +1,5 @@
 Rails.application.routes.draw do
+  mount JasmineRails::Engine => '/specs' if defined?(JasmineRails)
   get 'welcome/index'
   get 'welcome/get_current_user', :defaults => { :format => :json }
 

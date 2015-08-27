@@ -4,8 +4,10 @@
     "angular": "latest",
     "bootstrap-sass-official": "latest",
     "angular-ui-router": "latest",
+    "angular-resource": "latest",
     "angular-bootstrap": "latest",
     "angular-chart.js": "latest",
-    "angular-animate": "latest"
+    "angular-animate": "latest",
+    "angular-mocks": "latest"
   }
 }
