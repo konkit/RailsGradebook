@@ -17,7 +17,21 @@ gradebookApp.controller(
         return LoginService.login($scope.user_credentials);
       };
 
-      ControllersFactory.decorateModalSubmit($scope, $modalInstance, $scope.serviceCall);
+      $scope.ok = function(obj) {
+        $(obj.currentTarget).prop('disabled', true);
+
+        $scope.serviceCall()
+          .success(function(response) {
+            $modalInstance.close();
+          })
+          .error(function(response) {
+            $(obj.currentTarget).prop('disabled', false);
+            $scope.alerts = [];
+            //!!! Here we take response.error ( not errorS )
+            $scope.addAlert(response.error, 'danger');
+          });
+      };
+
     },
   ]
 );
