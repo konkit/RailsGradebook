@@ -2,5 +2,7 @@
 
 {<img src="https://codeclimate.com/github/konkit/RailsGradebook/badges/gpa.svg" />}[https://codeclimate.com/github/konkit/RailsGradebook]
 
+{<img src="https://hakiri.io/github/konkit/RailsGradebook/master.svg" alt="security" />}[https://hakiri.io/github/konkit/RailsGradebook/master]
+
 This app is meant to help students and teachers keep track of students' grades.
 Built in Ruby on Rails, Angular.js and Bootstrap.
