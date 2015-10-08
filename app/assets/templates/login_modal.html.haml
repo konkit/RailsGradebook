@@ -9,11 +9,11 @@
     .col-md-10.col-md-offset-1
       %alert{:close => "closeAlert($index)", "ng-repeat" => "alert in alerts", :type => "{{alert.type}}"} {{alert.msg}}
 
-      %label Email
-      %input.form-control{"ng-model" => "user_credentials.email"}
+      %label{for: 'logInEmail'} Email
+      %input#logInEmail.form-control{"ng-model": 'user_credentials.email', 'name': 'email'}
 
-      %label Password
-      %input.form-control{"ng-model" => "user_credentials.password", "type" => "password"}
+      %label{for: 'logInPassword'} Password
+      %input#logInPassword.form-control{"ng-model": "user_credentials.password", "type": "password", 'name': 'password'}
 
 .modal-footer
   .col-md-8.col-md-offset-2
