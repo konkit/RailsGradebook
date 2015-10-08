@@ -1,5 +1,6 @@
-{<img src="https://codeclimate.com/github/konkit/RailsGradebook/badges/gpa.svg" />}[https://codeclimate.com/github/konkit/RailsGradebook]
 == Gradebook app
+
+{<img src="https://codeclimate.com/github/konkit/RailsGradebook/badges/gpa.svg" />}[https://codeclimate.com/github/konkit/RailsGradebook]
 
 This app is meant to help students and teachers keep track of students' grades.
 Built in Ruby on Rails, Angular.js and Bootstrap.
