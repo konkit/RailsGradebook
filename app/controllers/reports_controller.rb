@@ -8,7 +8,7 @@ class ReportsController < ApplicationController
   end
 
   def view_report
-    report = Report.find_by(filename: params[:filename])
+    report = Report.find_by(filename: params.require(:filename))
     authorize! :view_reports, report
     render text: report.content, content_type: 'text/csv'
   end
